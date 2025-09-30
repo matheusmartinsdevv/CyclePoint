@@ -7,15 +7,15 @@
 </head>
 <body>
     <h1>Testando conexao com banco de dados</h1>
-    <p class="usuarios">carregando...</p>
+    <p id="usuarios">carregando...</p>
 
 
     <script>
 
-        fetch('../app/php/api.php', {method: "GET"})
+        fetch('/cyclepoint/app/php/api.php', {method: "GET"})
         .then(response => response.text())
         .then(dado => {
-            let rr = document.querySelector('.usuarios');
+            let rr = document.querySelector('#usuarios');
             rr.innerHTML = dado;
         })
 
