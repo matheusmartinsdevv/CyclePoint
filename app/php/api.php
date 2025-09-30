@@ -1,17 +1,18 @@
 <?php
+session_start();
 $conn = mysqli_connect("localhost:3307", "root", "", "db_cyclepoint");
 
-
+// EXIBE TODOS OS USUÁRIOS CADASTRADOS 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $query = mysqli_query($conn, "SELECT * FROM usuario;");
 
     while ($response = mysqli_fetch_assoc($query)) {
-        echo $response["nome"] . ", Cargo: " . $response["cargo"] .  "<br>";
+        echo $response["nome"] . ", Senha: " . $response["senha"] .  "<br>";
     };
 
 };
 
-// CONECTAR COM FORMULARIO DE CADASTRO DE USUARIO/EMPRESA
+// CONECTA COM FORMULARIO DE CADASTRO DE USUARIO
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['usuario']; 
     $email = $_POST['email']; 
