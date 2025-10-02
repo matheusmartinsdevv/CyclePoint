@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - CyclePoint</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="cadastro-body">
+
+    <div class="auth-container large-container">
+        <h2 class="title-primary">Novo Cadastro</h2>
+        <p class="role-hint">Selecione o seu perfil para prosseguir.</p>
+        
+        <div class="input-group">
+            <label for="tipo_cadastro">Eu sou uma:</label>
+            <select id="tipo_cadastro" onchange="switchRegistrationForm()">
+                <option value="empresa_comum">Empresa Comum (Geradora de Resíduo)</option>
+                <option value="recicladora">Empresa Recicladora (Coletora/Processadora)</option>
+            </select>
+        </div>
+
+        <form id="form-empresa-comum" action="/api/register/comum" method="POST" class="registration-form active">
+            <h3>Dados da Empresa Comum</h3>
+            
+            <div class="form-grid">
+                <div class="input-group"><label>Razão Social</label><input type="text" name="razao_social" required></div>
+                <div class="input-group"><label>Nome Fantasia</label><input type="text" name="nome_fantasia"></div>
+                <div class="input-group"><label>CNPJ</label><input type="text" name="cnpj" required></div>
+                <div class="input-group"><label>Telefone</label><input type="text" name="telefone"></div>
+            </div>
+            <hr>
+            
+            <h4>Acesso e Endereço</h4>
+            <div class="form-grid">
+                <div class="input-group"><label>E-mail (Login)</label><input type="email" name="email" required></div>
+                <div class="input-group"><label>Senha</label><input type="password" name="senha" required></div>
+            </div>
+            
+            <div class="form-grid address-grid">
+                <div class="input-group"><input type="text" placeholder="Logradouro" name="logradouro" required></div>
+                <div class="input-group"><input type="text" placeholder="Nº" name="numero" required class="input-small"></div>
+                <div class="input-group"><input type="text" placeholder="Bairro" name="bairro"></div>
+                <div class="input-group"><input type="text" placeholder="Cidade" name="cidade" required></div>
+                <div class="input-group"><input type="text" placeholder="Estado" name="estado" required></div>
+                <div class="input-group"><input type="text" placeholder="País" name="pais" value="Brasil" required></div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-large">Cadastrar Empresa Comum</button>
+        </form>
+
+        <form id="form-recicladora" action="/api/register/recicladora" method="POST" class="registration-form">
+            <h3>Dados da Empresa Recicladora</h3>
+             
+            <div class="form-grid">
+                <div class="input-group"><label>Razão Social</label><input type="text" name="razao_social" required></div>
+                <div class="input-group"><label>Nome Fantasia</label><input type="text" name="nome_fantasia"></div>
+                <div class="input-group"><label>CNPJ</label><input type="text" name="cnpj" required></div>
+                <div class="input-group"><label>Telefone</label><input type="text" name="telefone"></div>
+            </div>
+            <hr>
+
+            <h4>Acesso e Endereço</h4>
+            <div class="form-grid">
+                <div class="input-group"><label>E-mail (Login)</label><input type="email" name="email" required></div>
+                <div class="input-group"><label>Senha</label><input type="password" name="senha" required></div>
+            </div>
+            
+            <div class="form-grid address-grid">
+                <div class="input-group"><input type="text" placeholder="Logradouro" name="logradouro" required></div>
+                <div class="input-group"><input type="text" placeholder="Nº" name="numero" required class="input-small"></div>
+                <div class="input-group"><input type="text" placeholder="Bairro" name="bairro"></div>
+                <div class="input-group"><input type="text" placeholder="Cidade" name="cidade" required></div>
+                <div class="input-group"><input type="text" placeholder="Estado" name="estado" required></div>
+                <div class="input-group"><input type="text" placeholder="País" name="pais" value="Brasil" required></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large">Cadastrar Recicladora</button>
+        </form>
+
+        <p class="note">Após o cadastro, o **id_empresa** e a **data_cadastro** são gerados automaticamente.</p>
+        <a href="login.html" class="forgot-link">Já tem cadastro? Voltar para o Login.</a>
+    </div>
+</body>
+</html>

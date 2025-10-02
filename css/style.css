@@ -1,0 +1,485 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #FFF;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: #00A693;
+    color: #FFF;
+    border-color: #00A693;
+}
+
+.btn-primary:hover {
+    background-color: #00877A;
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+.btn-small {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+.login-body, .cadastro-body {
+    background-color: #F8F8F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #FFF;
+    padding: 30px 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.auth-container.large-container {
+    max-width: 700px;
+}
+
+.title-primary {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.role-hint {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.form-content, .registration-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #333;
+    font-size: 0.95em;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #EEE;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.forgot-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #00A693;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.separator {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 0.9em;
+    color: #AAA;
+}
+
+.registration-form {
+    display: none;
+    margin-top: 20px;
+}
+.registration-form.active {
+    display: flex;
+}
+
+.registration-form h3 {
+    text-align: center;
+    color: #00A693;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 10px;
+}
+
+.registration-form h4 {
+    color: #555;
+    margin: 15px 0 5px 0;
+    padding-top: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.address-grid .input-group:nth-child(2) {
+    grid-column: span 1;
+}
+
+.address-grid .input-group:nth-child(1),
+.address-grid .input-group:nth-child(3),
+.address-grid .input-group:nth-child(4),
+.address-grid .input-group:nth-child(5),
+.address-grid .input-group:nth-child(6) {
+    grid-column: span 2;
+}
+
+.note {
+    font-size: 0.8em;
+    color: #999;
+    text-align: center;
+    margin-top: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px dashed #EEE;
+    margin: 20px 0;
+}
+
+.header {
+    background-color: #FFF;
+    padding: 15px 0;
+    border-bottom: 1px solid #EEE;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+.header nav {
+    display: flex;
+    align-items: center;
+}
+
+.header nav a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 400;
+    transition: color 0.3s;
+    padding: 5px 0;
+}
+
+.header nav a:not(.btn):hover {
+    color: #00A693;
+}
+
+.header nav .nav-item.active {
+    font-weight: 700;
+    color: #00A693;
+    border-bottom: 2px solid #00A693;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.user-role {
+    font-weight: 700;
+    color: #00A693;
+    margin-right: 5px;
+}
+
+.page-container {
+    padding: 30px 0;
+    min-height: calc(100vh - 70px);
+    background-color: #F8F8F8;
+}
+
+.page-title {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-description {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 15px;
+}
+
+.wide-form {
+    max-width: 800px;
+    background-color: #FFF;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+}
+
+.grid-2-columns {
+    grid-template-columns: 1fr 1fr;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: #FFF;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+
+.card-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.card-value {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #00A693;
+    margin-bottom: 5px;
+}
+
+.card-value.value-danger {
+    color: #D9534F;
+}
+
+.card-value.value-warning {
+    color: #F0AD4E;
+}
+
+.card-value.value-success {
+    color: #5CB85C;
+}
+
+.card-detail {
+    font-size: 0.9em;
+    color: #999;
+}
+
+
+.action-card h3 {
+    color: #00A693;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-alt {
+    padding: 80px 0;
+    background-color: #F8F8F8;
+}
+
+.section-title {
+    font-size: 2em;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.lead-text {
+    text-align: center;
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    color: #555;
+}
+
+.hero {
+    background-color: #00A693;
+    color: #FFF;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.icon-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    text-align: center;
+}
+
+.icon-item img {
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.feature-card {
+    text-align: left;
+    border-left: 3px solid #00A693;
+    transition: none;
+}
+
+.feature-card h4 {
+    font-size: 1.1em;
+    color: #00A693;
+    margin-bottom: 10px;
+}
+
+.cta-section {
+    background-color: #00A693;
+    color: #FFF;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.cta-section p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.cta-section .btn-primary {
+    background-color: #FFF;
+    color: #00A693;
+    border-color: #FFF;
+}
+
+.cta-section .btn-primary:hover {
+    background-color: #EEE;
+    color: #00877A;
+    transform: translateY(-2px);
+}
+
+.footer {
+    background-color: #333;
+    color: #FFF;
+    padding: 20px 0;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.footer .container p {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 0.95em;
+    }
+    .header {
+        padding: 10px 0;
+    }
+    .header .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header nav {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 10px;
+    }
+    .header nav a {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .logo {
+        height: 50px;
+    }
+    .user-info {
+        display: none;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .address-grid .input-group:nth-child(2),
+    .address-grid .input-group:nth-child(1),
+    .address-grid .input-group:nth-child(3),
+    .address-grid .input-group:nth-child(4),
+    .address-grid .input-group:nth-child(5),
+    .address-grid .input-group:nth-child(6) {
+        grid-column: span 1;
+    }
+
+    .auth-container {
+        padding: 20px;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    .grid-2-columns {
+        grid-template-columns: 1fr;
+    }
+}
