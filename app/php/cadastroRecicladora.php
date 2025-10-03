@@ -2,7 +2,7 @@
 
 $conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
 
-// CONECTA COM FORMULARIO DE CADASTRO DE EMPRESA
+// CONECTA COM FORMULARIO DE CADASTRO DE RECICLADORA
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $razao_social = $_POST['razao_social']; 
     $nome_fantasia = $_POST['nome_fantasia']; 
@@ -19,28 +19,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pais = $_POST['pais'];
 
 
-    $stmt = $conn->prepare("INSERT INTO empresa (razao_social, nome_fantasia, cnpj, telefone, email, senha) values (?,?,?,?,?,?);");
+    $stmt = $conn->prepare("INSERT INTO recicladora (razao_social, nome_fantasia, cnpj, email, telefone, senha) values (?,?,?,?,?,?);");
 
-    $stmt->bind_param("ssssss", $razao_social, $nome_fantasia, $cnpj, $telefone, $email, $senha);
+    $stmt->bind_param("ssssss", $razao_social, $nome_fantasia, $cnpj, $email, $telefone,  $senha);
 
     if ($stmt->execute()) {
-        $id_empresa_inserido = mysqli_insert_id($conn);
+
+        $id_recicladora_inserido = mysqli_insert_id($conn);
 
 
-        // CADASTRO DE ENDERECO EMPRESA
-        $stmt_endereco = $conn->prepare("INSERT INTO endereco_empresa (id_empresa, numero, logradouro, bairro, cidade, estado, pais) values (?,?,?,?,?,?,?);");
+        // CADASTRO DE ENDERECO RECICLADORA
+        $stmt_endereco = $conn->prepare("INSERT INTO endereco_recicladora (id_recicladora, numero, logradouro, bairro, cidade, estado, pais) values (?,?,?,?,?,?,?);");
 
-        $stmt_endereco->bind_param("iisssss", $id_empresa_inserido, $numero, $logradouro, $bairro, $cidade, $estado, $pais);
+        $stmt_endereco->bind_param("iisssss", $id_recicladora_inserido, $numero, $logradouro, $bairro, $cidade, $estado, $pais);
 
         if ($stmt_endereco->execute()) {
             
             header("Location: ../../login.html"); 
             
-            exit(); 
+            exit();
         }
     }
-
-    
     
 
 };
