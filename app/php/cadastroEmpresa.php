@@ -1,0 +1,53 @@
+<?php
+
+$conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
+
+// // EXIBE TODAS AS EMPRESAS COMUNS CADASTRADAS 
+
+// if ($_SERVER["REQUEST_METHOD"] == "GET") {
+//     $query = mysqli_query($conn, "SELECT * FROM usuario;");
+
+//     while ($response = mysqli_fetch_assoc($query)) {
+//         echo $response["razao_social"] . ", Senha: " . $response["senha"] .  "<br>";
+//     };
+
+// };
+
+// CONECTA COM FORMULARIO DE CADASTRO DE EMPRESA
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $razao_social = $_POST['razao_social']; 
+    $nome_fantasia = $_POST['nome_fantasia']; 
+    $cnpj = $_POST['cnpj'];
+    $telefone = $_POST['telefone']; 
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    $logradouro = $_POST['logradouro'];
+    $numero = $_POST['numero'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+    $pais = $_POST['pais'];
+
+
+    $stmt = $conn->prepare("INSERT INTO empresa (razao_social, nome_fantasia, cnpj, telefone, email, senha) values (?,?,?,?,?,?);");
+
+    $stmt->bind_param("ssssss", $razao_social, $nome_fantasia, $cnpj, $telefone, $email, $senha);
+
+    $stmt->execute();
+
+    $id_empresa_inserido = mysqli_insert_id($conn);
+
+
+    // CADASTRO DE ENDERECO EMPRESA
+    $stmt_endereco = $conn->prepare("INSERT INTO endereco_empresa (id_empresa, numero, logradouro, bairro, cidade, estado, pais) values (?,?,?,?,?,?,?);");
+
+    $stmt_endereco->bind_param("iisssss", $id_empresa_inserido, $numero, $logradouro, $bairro, $cidade, $estado, $pais);
+
+    $stmt_endereco->execute();
+    
+
+};
+
+?>
+

@@ -13,6 +13,7 @@
         <h2 class="title-primary">Novo Cadastro</h2>
         <p class="role-hint">Selecione o seu perfil para prosseguir.</p>
         
+        <!-- CADASTRO APENAS DE EMPRESA COMUM (EXCLUIR RECICLADORA) -->
         <div class="input-group">
             <label for="tipo_cadastro">Eu sou uma:</label>
             <select id="tipo_cadastro" onchange="switchRegistrationForm()">
@@ -21,14 +22,14 @@
             </select>
         </div>
 
-        <form id="form-empresa-comum" action="/api/register/comum" method="POST" class="registration-form active">
+        <form id="form-empresa-comum" action="./app/php/cadastroEmpresa.php" method="POST" class="registration-form active">
             <h3>Dados da Empresa Comum</h3>
             
             <div class="form-grid">
-                <div class="input-group"><label>Razão Social</label><input type="text" name="razao_social" required></div>
-                <div class="input-group"><label>Nome Fantasia</label><input type="text" name="nome_fantasia"></div>
-                <div class="input-group"><label>CNPJ</label><input type="text" name="cnpj" required></div>
-                <div class="input-group"><label>Telefone</label><input type="text" name="telefone"></div>
+                <div class="input-group"><label>Razão Social*</label><input type="text" name="razao_social" required></div>
+                <div class="input-group"><label>Nome Fantasia*</label><input type="text" name="nome_fantasia" required></div>
+                <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" required></div>
+                <div class="input-group"><label>Telefone*</label><input type="text" name="telefone" required></div>
             </div>
             <hr>
             
@@ -50,6 +51,7 @@
             <button type="submit" class="btn btn-primary btn-large">Cadastrar Empresa Comum</button>
         </form>
 
+        <!-- MOVER PARA OUTRO ARQUIVO -->
         <form id="form-recicladora" action="/api/register/recicladora" method="POST" class="registration-form">
             <h3>Dados da Empresa Recicladora</h3>
              
@@ -82,5 +84,26 @@
         <p class="note">Após o cadastro, o **id_empresa** e a **data_cadastro** são gerados automaticamente.</p>
         <a href="login.html" class="forgot-link">Já tem cadastro? Voltar para o Login.</a>
     </div>
+
+    <script>
+    // A função chamada pelo evento onchange do <select>
+    function switchRegistrationForm() {
+        // 1. Pega o valor selecionado (ex: 'recicladora')
+        const selectedValue = document.getElementById('tipo_cadastro').value;
+
+        // 2. Pega os dois elementos de formulário
+        const formComum = document.getElementById('form-empresa-comum');
+        const formRecicladora = document.getElementById('form-recicladora');
+
+        // 3. Verifica o valor e aplica/remove a classe 'active'
+        if (selectedValue === 'empresa_comum') {
+            formComum.classList.add('active');
+            formRecicladora.classList.remove('active');
+        } else if (selectedValue === 'recicladora') {
+            formComum.classList.remove('active');
+            formRecicladora.classList.add('active');
+        }
+    }
+    </script>
 </body>
 </html>
