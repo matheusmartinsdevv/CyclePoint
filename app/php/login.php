@@ -1,44 +1,57 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost:3307", "root", "", "db_cyclepoint");
+$conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
 
-// EM CASO DE FALHA NA CONEXAO COM BANCO DE DADOS
-if ($conn->connect_error) {
-    die("Falha na Conexão: " . $conn->connect_error);
-}
 
 // CONECTA COM FORMULARIO LOGIN
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['usuario_login']; 
-    $senha = $_POST['senha_login'];
+    $email = $_POST['email']; 
+    $senha_digitada = $_POST['senha'];
+
+    $stmt_check = $conn->prepare("SELECT COUNT(*) FROM usuario WHERE email = ? AND senha = ?;");
+    $stmt_check->bind_param("ss", $email, $senha_digitada);
+    $stmt_check->execute();
 
 
-    $stmt = $conn->prepare("SELECT id_usuario FROM usuario WHERE nome = ? AND senha = ?;");
-    $stmt->bind_param("ss", $nome, $senha);
-    $stmt->execute();
+    $result = $stmt_check->get_result();
+    $row = $result->fetch_array(MYSQLI_NUM);
+    $user_count = $row[0];
 
-    $resultado = $stmt->get_result();
+    $stmt_check->close();
+    // $stmt = $conn->prepare("SELECT id_usuario FROM usuario WHERE email = ? AND senha = ?;");
+    // $stmt->bind_param("ss", $email, $senha_digitada);
+    // $stmt->execute();
+    // $resultado = $stmt->get_result();
 
 
     // VERIFICA SE EXISTE CADASTRO NO BANCO DE DADOS
-    if ($resultado->num_rows === 1) {
+    if ($user_count == 0) {
 
-    $usuario = $resultado->fetch_assoc();
-        
-    // INICIAR A SESSÃO DE LOGIN
-    $_SESSION['logado'] = true; // Flag para indicar que o usuário está logado
-    $_SESSION['id_usuario'] = $usuario['id_usuario']; // Armazena o ID do banco
-    $_SESSION['nome_usuario'] = $nome; // Opcional: armazena o nome
-        
-    // REDIRECIONAR O USUÁRIO
-    header("Location: paginaLogado.php"); 
-    exit();
-    
+        echo "ERRO: Email ou senha incorretos.";  
+
+            
     } else {
-    
-    echo "ERRO: Nome de usuário ou senha incorretos.";
-    
-}
+        
+        $stmt_data = $conn->prepare("SELECT id_usuario, nome, id_empresa FROM usuario WHERE email = ? AND senha = ?;");
+        $stmt_data->bind_param("ss", $email, $senha_digitada);
+        $stmt_data->execute();
+        $resultado = $stmt_data->get_result();
+        
+        // Como já checamos que existe 1 linha, apenas buscamos os dados
+        $usuario = $resultado->fetch_assoc();
+        
+        // B) INICIAR A SESSÃO DE LOGIN
+        $_SESSION['logado'] = true; 
+        // Agora, $usuario está definido corretamente!
+        $_SESSION['id_usuario'] = $usuario['id_usuario']; 
+        $_SESSION['nome_usuario'] = $usuario['nome'];
+        $_SESSION['id_empresa'] = $usuario['id_empresa']; // Se precisar
+        
+        $stmt_data->close();
+                
+        // REDIRECIONAR O USUÁRIO
+        header("Location: dashboard.php");   
+    }
 
 }
 

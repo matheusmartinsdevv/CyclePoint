@@ -1,0 +1,85 @@
+<?php
+session_start();
+$id_logado = $_SESSION['id_usuario'];
+$nome_logado = $_SESSION['nome_usuario'];
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CyclePoint</title>
+    <link rel="stylesheet" href="../../css/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <img class="logo" src="../../img/logo.png" alt="CyclePoint Logo">
+            <nav>
+                <a href="../../dashboard.html" class="nav-item active">Dashboard</a>
+                <a href="../../cadastro-equipamento.html" class="nav-item">Cadastrar Equipamento</a>
+                <a href="../../meus-descartes.html" class="nav-item">Meus Descartes</a>
+                <a href="../../gerenciar-usuarios.html" class="nav-item">Gerenciar Usuários</a>
+                <a href="../../configuracoes.html" class="nav-item">Configurações</a>
+                
+                <div class="user-info">
+                    <span class="user-role"><?php echo $nome_logado ?></span>
+                </div>
+
+                <a href="../../login.html">Sair</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container page-container">
+            <h1 class="page-title">Visão Geral do Sistema</h1>
+            
+            <div class="card-grid">
+                
+                <div class="card data-card">
+                    <div class="card-title">Equipamentos Cadastrados</div>
+                    <div class="card-value"></div>
+                    <p class="card-detail">Total de ativos gerenciados.</p>
+                </div>
+
+                <div class="card data-card">
+                    <div class="card-title">Descarte Pendente</div>
+                    <div class="card-value value-danger"></div>
+                    <p class="card-detail">Ativos com vida útil expirada.</p>
+                </div>
+
+                <div class="card data-card">
+                    <div class="card-title">Fim de Vida Útil (30 dias)</div>
+                    <div class="card-value value-warning"></div>
+                    <p class="card-detail">Equipamentos a serem descartados em breve.</p>
+                </div>
+
+                <div class="card data-card">
+                    <div class="card-title">Coletas Agendadas</div>
+                    <div class="card-value value-success"></div>
+                    <p class="card-detail">Próximo agendamento:.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Ações do Sistema</h2>
+            
+            <div class="card action-card">
+                <h3 class="card-title">Novo Cadastro</h3>
+                <p>Registre um novo equipamento de TI ou gere um relatório.</p>
+                <a href="../../cadastro-equipamento.html" class="btn btn-primary btn-small">Cadastrar Novo Ativo</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CyclePoint. Gerenciamento de Ativos de TI.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

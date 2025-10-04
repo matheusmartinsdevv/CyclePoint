@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
     } else {
         
+        // PEGAR FOREIGN KEY
         $stmt_id = $conn->prepare("SELECT id_empresa FROM empresa WHERE cnpj = ?");
         $stmt_id->bind_param("s", $cnpj);
         $stmt_id->execute();

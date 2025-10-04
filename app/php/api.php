@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost:3307", "root", "", "db_cyclepoint");
+$conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
 
 // EXIBE TODOS OS USUÁRIOS CADASTRADOS 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
