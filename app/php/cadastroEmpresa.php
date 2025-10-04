@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
 
 // CONECTA COM FORMULARIO DE CADASTRO DE EMPRESA
@@ -33,12 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_endereco->bind_param("iisssss", $id_empresa_inserido, $numero, $logradouro, $bairro, $cidade, $estado, $pais);
 
         if ($stmt_endereco->execute()) {
+
+            $_SESSION['message'] = [
+                'type' => 'success',
+                'text' => '✅ Cadastro da empresa ' . $nome_fantasia . ' realizado com sucesso! Você já pode fazer login.'
+            ];
+            $stmt_endereco->close();
             
-            header("Location: ../../login.html"); 
-            
-            exit(); 
+             
+        } else {
+            $_SESSION['message'] = [
+                'type' => 'error',
+                'text' => '❌ Erro ao cadastrar o endereço. Tente novamente.'
+            ];
+            // Opcional: Aqui, você pode querer deletar a empresa que foi inserida sem endereço.
+            $stmt_endereco->close();
         }
     }
+
+    header("Location: ../../login.php"); 
+
 
     
     

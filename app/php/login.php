@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_data->close();
                 
         // REDIRECIONAR O USUÁRIO
-        header("Location: dashboard.php");   
+        header("Location: ../../dashboard.php");   
     }
 
 }

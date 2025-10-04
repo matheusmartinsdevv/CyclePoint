@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,6 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="login-body">
+
+     <?php
+    // Inicia a sessão para acessar a mensagem
+    session_start();
+
+    // 1. Verifica se há uma mensagem de feedback
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        $class = ($message['type'] === 'success') ? 'success-message' : 'error-message';
+        
+        // 2. Imprime a caixa de mensagem
+        echo '<div class="' . $class . '" '; 
+        echo htmlspecialchars($message['text']);
+        echo '</div>';
+        
+        // 3. IMPORTANTE: Remove a mensagem da sessão para que ela não apareça de novo
+        unset($_SESSION['message']);
+    }
+    ?>
+
 
     <div class="auth-container">
         <h2 class="title-primary">Acesso CyclePoint</h2>

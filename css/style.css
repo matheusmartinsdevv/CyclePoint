@@ -11,6 +11,7 @@ body {
     background-color: #FFF;
 }
 
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -57,7 +58,19 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    flex-direction: column;
     padding: 20px;
+}
+
+.success-message {
+    width: 100%;
+    max-width: 400px;
+    background-color: #FFF;
+    padding: 30px 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: inline;
+    margin-bottom: 10px;
 }
 
 .auth-container {
@@ -483,3 +496,4 @@ hr {
         grid-template-columns: 1fr;
     }
 }
+

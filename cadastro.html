@@ -28,15 +28,15 @@
             <div class="form-grid">
                 <div class="input-group"><label>Razão Social*</label><input type="text" name="razao_social" required></div>
                 <div class="input-group"><label>Nome Fantasia*</label><input type="text" name="nome_fantasia" required></div>
-                <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" required></div>
-                <div class="input-group"><label>Telefone*</label><input type="text" name="telefone" required></div>
+                <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" maxlength="18" required></div>
+                <div class="input-group"><label>Telefone</label><input type="text" name="telefone" ></div>
             </div>
             <hr>
             
             <h4>Acesso e Endereço</h4>
             <div class="form-grid">
-                <div class="input-group"><label>E-mail</label><input type="email" name="email" required></div>
-                <div class="input-group"><label>Senha</label><input type="password" name="senha" required></div>
+                <div class="input-group"><label>E-mail*</label><input type="email" name="email" required></div>
+                <div class="input-group"><label>Defina a Senha*</label><input type="password" name="senha" required></div>
             </div>
             
             <div class="form-grid address-grid">
@@ -56,17 +56,17 @@
             <h3>Dados da Empresa Recicladora</h3>
              
             <div class="form-grid">
-                <div class="input-group"><label>Razão Social</label><input type="text" name="razao_social" required></div>
-                <div class="input-group"><label>Nome Fantasia</label><input type="text" name="nome_fantasia"></div>
-                <div class="input-group"><label>CNPJ</label><input type="text" name="cnpj" required></div>
-                <div class="input-group"><label>Telefone</label><input type="text" name="telefone"></div>
+                <div class="input-group"><label>Razão Social*</label><input type="text" name="razao_social" required></div>
+                <div class="input-group"><label>Nome Fantasia*</label><input type="text" name="nome_fantasia" required></div>
+                <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" maxlength="18" required></div>
+                <div class="input-group"><label>Telefone*</label><input type="text" name="telefone" required></div>
             </div>
             <hr>
 
             <h4>Acesso e Endereço</h4>
             <div class="form-grid">
-                <div class="input-group"><label>E-mail</label><input type="email" name="email" required></div>
-                <div class="input-group"><label>Senha</label><input type="password" name="senha" required></div>
+                <div class="input-group"><label>E-mail*</label><input type="email" name="email" required></div>
+                <div class="input-group"><label>Defina a Senha*</label><input type="password" name="senha" required></div>
             </div>
             
             <div class="form-grid address-grid">
@@ -80,8 +80,6 @@
 
             <button type="submit" class="btn btn-primary btn-large">Cadastrar Recicladora</button>
         </form>
-
-        <p class="note">Após o cadastro, o **id_empresa** e a **data_cadastro** são gerados automaticamente.</p>
 
         <a href="login.html" class="forgot-link">Já tem cadastro? Voltar para o Login.</a> 
     </div>

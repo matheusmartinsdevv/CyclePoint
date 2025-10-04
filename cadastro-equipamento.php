@@ -1,3 +1,9 @@
+<?php
+session_start();
+$id_logado = $_SESSION['id_usuario'];
+$nome_logado = $_SESSION['nome_usuario'];
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,11 +19,11 @@
         <div class="container">
             <img class="logo" src="img/logo.png" alt="CyclePoint Logo">
             <nav>
-                <a href="dashboard.html" class="nav-item">Dashboard</a>
-                <a href="cadastro-equipamento.html" class="nav-item active">Cadastrar Equipamento</a>
-                <a href="meus-descartes.html" class="nav-item">Meus Descartes</a>
-                <a href="gerenciar-usuarios.html" class="nav-item">Gerenciar Usuários</a>
-                <a href="configuracoes.html" class="nav-item">Configurações</a>
+                <a href="dashboard.php" class="nav-item">Dashboard</a>
+                <a href="cadastro-equipamento.php" class="nav-item active">Cadastrar Equipamento</a>
+                <a href="meus-descartes.php" class="nav-item">Meus Descartes</a>
+                <a href="gerenciar-usuarios.php" class="nav-item">Gerenciar Usuários</a>
+                <a href="configuracoes.php" class="nav-item">Configurações</a>
                 
                 <div class="user-info">
                     <span class="user-role">Administrador</span>
