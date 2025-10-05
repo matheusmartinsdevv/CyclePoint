@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt = $conn->prepare("INSERT INTO recicladora (razao_social, nome_fantasia, cnpj, email, telefone, senha) values (?,?,?,?,?,?);");
 
-    $stmt->bind_param("ssssss", $razao_social, $nome_fantasia, $cnpj, $email, $telefone,  $senha);
+    $stmt->bind_param("ssssss", $razao_social, $nome_fantasia, $cnpj, $email, $telefone, $senha);
 
     if ($stmt->execute()) {
 

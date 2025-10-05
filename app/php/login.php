@@ -18,16 +18,85 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_count = $row[0];
 
     $stmt_check->close();
-    // $stmt = $conn->prepare("SELECT id_usuario FROM usuario WHERE email = ? AND senha = ?;");
-    // $stmt->bind_param("ss", $email, $senha_digitada);
-    // $stmt->execute();
-    // $resultado = $stmt->get_result();
 
 
     // VERIFICA SE EXISTE CADASTRO NO BANCO DE DADOS
     if ($user_count == 0) {
 
-        echo "ERRO: Email ou senha incorretos.";  
+        // VERIFICA SE É ADMINISTRADOR (EMAIL E SENHA DA EMPRESA)
+
+        $stmt_adm = $conn->prepare("SELECT COUNT(*) FROM empresa WHERE email = ? AND senha = ?;");
+        $stmt_adm->bind_param("ss", $email, $senha_digitada);
+        $stmt_adm->execute();
+
+        $result = $stmt_adm->get_result();
+        $row = $result->fetch_array(MYSQLI_NUM);
+        $adm_user_count = $row[0];
+
+        $stmt_adm->close();
+
+        if ($adm_user_count == 0) {
+            
+            // VERIFICA SE É RECICLADORA (EMAIL E SENHA DA RECICLADORA)
+
+            $stmt_recicladora = $conn->prepare("SELECT COUNT(*) FROM recicladora WHERE email = ? AND senha = ?;");
+            $stmt_recicladora->bind_param("ss", $email, $senha_digitada);
+            $stmt_recicladora->execute();
+
+            $result = $stmt_recicladora->get_result();
+            $row = $result->fetch_array(MYSQLI_NUM);
+            $recicladora_user_count = $row[0];
+
+            $stmt_recicladora->close();
+
+            if ($recicladora_user_count == 0) {
+                echo "ERRO: Email ou senha incorretos.";  
+            } else {
+                $stmt_data = $conn->prepare("SELECT id_recicladora,nome_fantasia FROM recicladora WHERE email = ? AND senha = ?;");
+                $stmt_data->bind_param("ss", $email, $senha_digitada);
+                $stmt_data->execute();
+                $resultado = $stmt_data->get_result();
+                
+                
+                $recicladora = $resultado->fetch_assoc();
+                
+                // INICIAR A SESSÃO DE LOGIN
+                $_SESSION['logado'] = true; 
+                $_SESSION['recicladora'] = $recicladora['id_recicladora']; 
+                $_SESSION['nome_logado_display'] = $recicladora['nome_fantasia'];
+                $_SESSION['role'] = 'recicladora';
+
+                
+                $stmt_data->close();
+                        
+                // REDIRECIONAR O USUÁRIO ADMINISTRADOR
+                header("Location: ../../paginaRecicladora.php");
+            }
+
+
+        } else {
+
+            $stmt_data = $conn->prepare("SELECT id_empresa, nome_fantasia FROM empresa WHERE email = ? AND senha = ?;");
+            $stmt_data->bind_param("ss", $email, $senha_digitada);
+            $stmt_data->execute();
+            $resultado = $stmt_data->get_result();
+            
+            
+            $empresa = $resultado->fetch_assoc();
+            
+            // INICIAR A SESSÃO DE LOGIN
+            $_SESSION['logado'] = true; 
+            $_SESSION['id_empresa'] = $empresa['id_empresa']; 
+            $_SESSION['nome_logado_display'] = $empresa['nome_fantasia'];
+            $_SESSION['role'] = 'administrador';
+
+            
+            $stmt_data->close();
+                    
+            // REDIRECIONAR O USUÁRIO ADMINISTRADOR
+            header("Location: ../../dashboard.php");
+
+        }
 
             
     } else {
@@ -37,15 +106,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_data->execute();
         $resultado = $stmt_data->get_result();
         
-        // Como já checamos que existe 1 linha, apenas buscamos os dados
         $usuario = $resultado->fetch_assoc();
         
-        // B) INICIAR A SESSÃO DE LOGIN
+        // INICIAR A SESSÃO DE LOGIN
         $_SESSION['logado'] = true; 
-        // Agora, $usuario está definido corretamente!
         $_SESSION['id_usuario'] = $usuario['id_usuario']; 
-        $_SESSION['nome_usuario'] = $usuario['nome'];
-        $_SESSION['id_empresa'] = $usuario['id_empresa']; // Se precisar
+        $_SESSION['id_empresa'] = $usuario['id_empresa']; 
+
+        $_SESSION['role'] = 'usuario_comum';
+        $_SESSION['nome_logado_display'] = $usuario['nome'];
         
         $stmt_data->close();
                 
