@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $_SESSION['message'] = [
                 'type' => 'success',
-                'text' => '✅ Cadastro da empresa ' . $nome_fantasia . ' realizado com sucesso! Você já pode fazer login.'
+                'text' => '✅ Cadastro da empresa ' . $nome_fantasia . ' realizado com sucesso! Você já pode criar seu usuário.'
             ];
             $stmt_endereco->close();
             
@@ -46,15 +46,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'type' => 'error',
                 'text' => '❌ Erro ao cadastrar o endereço. Tente novamente.'
             ];
-            // Opcional: Aqui, você pode querer deletar a empresa que foi inserida sem endereço.
-            $stmt_endereco->close();
+            
         }
+    } else {
+        $_SESSION['message'] = [
+                'type' => 'error',
+                'text' => '❌ Erro ao cadastrar a empresa. Tente novamente.'
+            ];
     }
 
     header("Location: ../../login.php"); 
 
-
-    
     
 
 };

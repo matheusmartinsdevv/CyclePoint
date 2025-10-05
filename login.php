@@ -11,51 +11,53 @@
 <body class="login-body">
 
      <?php
-    // Inicia a sessão para acessar a mensagem
     session_start();
 
-    // 1. Verifica se há uma mensagem de feedback
+    // Verifica se há uma mensagem de feedback
     if (isset($_SESSION['message'])) {
         $message = $_SESSION['message'];
         $class = ($message['type'] === 'success') ? 'success-message' : 'error-message';
         
-        // 2. Imprime a caixa de mensagem
-        echo '<div class="' . $class . '" '; 
+        echo '<div class="' . $class . '" style="background-color:#cdffed;">'; 
         echo htmlspecialchars($message['text']);
         echo '</div>';
         
-        // 3. IMPORTANTE: Remove a mensagem da sessão para que ela não apareça de novo
+        
         unset($_SESSION['message']);
     }
     ?>
 
+    <div class="login-mascote" style="display: flex; flex-direction:row;">
+        <img src="img/mascote.png" alt="" style="width: 30em;height: 30em;margin-top: 50px;">
 
-    <div class="auth-container">
-        <h2 class="title-primary">Acesso CyclePoint</h2>
-        <p class="role-hint">Entre com suas credenciais de usuário.</p>
-        
-        <form action="app/php/login.php" method="POST" class="form-content">
-            <div class="input-group">
-                <label for="login-email">E-mail</label>
-                <input type="email" id="login-email" name="email" required>
-            </div>
-            <div class="input-group">
-                <label for="login-senha">Senha</label>
-                <input type="password" id="login-senha" name="senha" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Entrar</button>
-            <a href="#" class="forgot-link">Esqueceu a senha?</a>
-        </form>
 
-        <p class="separator">ou</p>
-        
-        <a href="cadastro.html" class="btn btn-secondary">Cadastro de Empresa</a>
+        <div class="auth-container">
+            <h2 class="title-primary">Acesso CyclePoint</h2>
+            <p class="role-hint">Entre com suas credenciais de usuário.</p>
+            
+            <form action="app/php/login.php" method="POST" class="form-content">
+                <div class="input-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-senha">Senha</label>
+                    <input type="password" id="login-senha" name="senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+                <a href="#" class="forgot-link">Esqueceu a senha?</a>
+            </form>
 
-        <a href="cadastro-usuario.html" class="btn btn-secondary">Cadastro de Usuário</a>
+            <p class="separator">ou</p>
+            
+            <a href="cadastro.html" class="btn btn-secondary">Cadastro de Empresa</a>
 
-        <a href="index.html" class="forgot-link" style="display: block; margin-top: 20px;">
-            &#x2190; Voltar para a Página Inicial
-        </a>
+            <a href="cadastro-usuario.html" class="btn btn-secondary">Cadastro de Usuário</a>
+
+            <a href="index.html" class="forgot-link" style="display: block; margin-top: 20px;">
+                &#x2190; Voltar para a Página Inicial
+            </a>
+        </div>
     </div>
 
 </body>

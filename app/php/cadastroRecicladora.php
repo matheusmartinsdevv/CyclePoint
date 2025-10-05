@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
 
 // CONECTA COM FORMULARIO DE CADASTRO DE RECICLADORA
@@ -34,13 +34,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_endereco->bind_param("iisssss", $id_recicladora_inserido, $numero, $logradouro, $bairro, $cidade, $estado, $pais);
 
         if ($stmt_endereco->execute()) {
+
+            $_SESSION['message'] = [
+                'type' => 'success',
+                'text' => '✅ Cadastro da recicladora ' . $nome_fantasia . ' realizado com sucesso! Você já pode fazer login.'
+            ];
+            $stmt_endereco->close();
+        } else {
+            $_SESSION['message'] = [
+                'type' => 'error',
+                'text' => '❌ Erro ao cadastrar o endereço. Tente novamente.'
+            ];
             
-            header("Location: ../../login.html"); 
-            
-            exit();
         }
+            
+            
+    } else {
+        $_SESSION['message'] = [
+                'type' => 'error',
+                'text' => '❌ Erro ao cadastrar a recicladora. Tente novamente.'
+            ];
     }
-    
+
+    header("Location: ../../login.php"); 
 
 };
 

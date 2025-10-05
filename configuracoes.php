@@ -27,11 +27,10 @@ $nome_logado = $_SESSION['nome_usuario'];
                 <a href="configuracoes.php" class="nav-item active">Configurações</a>
                 
                 <div class="user-info">
-                    <span class="user-role">Administrador</span>
-                    <span>| Empresa Teste</span>
+                    <span class="user-role"><?php echo $nome_logado ?></span>
                 </div>
                 
-                <a href="login.html">Sair</a>
+                <a href="login.php">Sair</a>
             </nav>
         </div>
     </header>

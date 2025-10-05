@@ -29,7 +29,7 @@ $nome_logado = $_SESSION['nome_usuario'];
                     <span class="user-role"><?php echo $nome_logado ?></span>
                 </div>
 
-                <a href="login.html">Sair</a>
+                <a href="login.php">Sair</a>
             </nav>
         </div>
     </header>
@@ -70,7 +70,7 @@ $nome_logado = $_SESSION['nome_usuario'];
             <div class="card action-card">
                 <h3 class="card-title">Novo Cadastro</h3>
                 <p>Registre um novo equipamento de TI ou gere um relatório.</p>
-                <a href="cadastro-equipamento.html" class="btn btn-primary btn-small">Cadastrar Novo Ativo</a>
+                <a href="cadastro-equipamento.php" class="btn btn-primary btn-small">Cadastrar Novo Ativo</a>
             </div>
         </div>
     </main>

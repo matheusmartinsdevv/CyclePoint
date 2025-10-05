@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
 
 // CONECTA COM FORMULARIO DE CADASTRO DE USUARIO
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // 2. CNPJ existe
     if ($cnpj_count == 0) {
         
-        echo "Erro: Empresa não cadastrada. Verifique o CNPJ ou realize o cadastro completo.";
+        echo "Erro: Sua empresa não está cadastrada. Verifique o CNPJ ou realize o cadastro completo.";
         
     } else {
         
@@ -42,12 +42,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssssi", $nome, $email, $senha, $cargo, $id_empresa);
 
         if ($stmt->execute()) {
-                
-            header("Location: ../../login.html"); 
-                
-            exit(); 
+
+            $_SESSION['message'] = [
+                'type' => 'success',
+                'text' => '✅ Cadastro do usuário ' . $nome . ' realizado com sucesso! Você já pode fazer login.'
+            ];
+            $stmt->close();
+            
+             
+        } else {
+            $_SESSION['message'] = [
+                'type' => 'error',
+                'text' => '❌ Erro ao cadastrar o usuário. Tente novamente.'
+            ];
+            
         }
     }
+
+    header("Location: ../../login.php"); 
+
 
 };
 
