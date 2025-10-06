@@ -1,7 +1,12 @@
 <?php
 session_start();
-$id_logado = $_SESSION['id_usuario'];
-$nome_logado = $_SESSION['nome_usuario'];
+// $id_logado = $_SESSION['id_usuario'];
+// $nome_logado = $_SESSION['nome_usuario'];
+
+$nome_logado_display = isset($_SESSION['nome_logado_display']) ? $_SESSION['nome_logado_display'] : 'Visitante';
+$role_logado = isset($_SESSION['role']) ? $_SESSION['role'] : 'deslogado';
+
+$role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Comum';
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +25,20 @@ $nome_logado = $_SESSION['nome_usuario'];
             <img class="logo" src="img/logo.png" alt="CyclePoint Logo">
             <nav>
                 <a href="dashboard.php" class="nav-item">Dashboard</a>
-                <a href="cadastro-equipamento.php" class="nav-item ">Cadastrar Equipamento</a>
+
+                <a href="cadastro-equipamento.php" class="nav-item">Cadastrar Equipamento</a>
+
                 <a href="meus-descartes.php" class="nav-item active">Meus Descartes</a>
-                <a href="gerenciar-usuarios.php" class="nav-item">Gerenciar Usuários</a>
+
                 <a href="configuracoes.php" class="nav-item">Configurações</a>
-                
+
+                <?php if ($role_logado == 'administrador'): ?>
+                <a href="gerenciar-usuarios.php" class="nav-item">Gerenciar Usuários</a><?php endif; ?>
+
                 <div class="user-info">
-                    <span class="user-role"><?php echo $nome_logado ?></span>
+                    <span class="user-role"><?php echo $nome_logado_display; ?></span> 
                 </div>
-                
+
                 <a href="login.php">Sair</a>
             </nav>
         </div>
@@ -43,7 +53,7 @@ $nome_logado = $_SESSION['nome_usuario'];
     
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 CyclePoint. Gerenciamento de Ativos de TI.</p>
+            <p>&copy; 2025 CyclePoint. Gerenciamento de Ativos de TI.</p>
         </div>
     </footer>
 
