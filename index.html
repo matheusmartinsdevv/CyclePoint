@@ -4,69 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyclePoint: Descarte Inteligente de TI</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/landingpage.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="header">
         <div class="container">
-            <img class="logo" src="img/logo.png" alt="CyclePoint Logo">
+            <div class="logo-container">
+                <img class="logo" src="img/logo.png" alt="CyclePoint Logo Robô">
+        
+            </div>
             <nav>
-                <a href="#problema" id="problema-nav">O Desafio</a>
-                <a href="#solucao" id="solucao-nav">A Solução</a>
-                <a href="#funcionalidades" id="funcionalidades-nav">Funcionalidades</a>
-                <a href="login.php" >Começar Agora</a>
+                <a href="#problema" class="nav-link">O Desafio</a>
+                <a href="#solucao" class="nav-link">A Solução</a>
+                <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
+                <a href="login.php" class="btn btn-primary btn-small">Começar Agora</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="hero">
-            <div class="container">
-                <h2>Transforme seu Lixo Eletrônico em Sustentabilidade e Conformidade.</h2>
-                <p>Gerenciamento de ativos de TI e descarte inteligente para empresas de todos os portes.</p>
-                <a href="login.php" class="btn btn-primary btn-large">Solicite uma Demonstração Gratuita</a>
-            </div>
-        </section>
-
-        <section id="problema" class="section-alt">
-            <div class="container">
-                <h3 class="section-title">O Desafio do Descarte Inadequado</h3>
-                <p class="lead-text">Dispositivos de TI se tornam obsoletos, perdem a eficiência e precisam ser substituídos. O problema vai além do custo de novos equipamentos: o **descarte inadequado de lixo eletrônico causa graves problemas ambientais e de saúde**, contaminando solo e água com metais pesados (chumbo, mercúrio).</p>
-                <div class="card-grid icon-grid">
-                    <div class="card icon-item">
-                        <img src="" alt="Obsoleto">
-                        <h4>Obsolescência Constante</h4>
-                    </div>
-                    <div class="card icon-item">
-                        <img src="" alt="Risco Ambiental">
-                        <h4>Risco Ambiental e de Saúde</h4>
-                    </div>
-                    <div class="card icon-item">
-                        <img src="" alt="Legal">
-                        <h4>Falta de Conformidade Legal</h4>
-                    </div>
+        <section id="hero" class="hero section-large">
+            <div class="container hero-content">
+                <div class="hero-text-box">
+                    <h1>
+                        <span class="highlight-text">Transforme</span> seu Lixo Eletrônico em Sustentabilidade e Conformidade.
+                    </h1>
+                    <p class="lead-text">Gerenciamento de ativos de TI e descarte inteligente para empresas de todos os portes.</p>
+                    <a href="login.php" class="btn btn-primary btn-large cta-hero-btn">Solicite uma Demonstração Gratuita</a>
+                </div>
+                <div class="hero-image-box">
+                    <img src="img/mascote.png" alt="Mascote Robô Sustentável CyclePoint" class="mascot-image">
                 </div>
             </div>
         </section>
 
-        <section id="solucao" class="section">
+        <section id="problema" class="section">
             <div class="container">
-                <h3 class="section-title">CyclePoint: Sua Plataforma de Gestão Sustentável</h3>
-                <p class="lead-text">Nosso sistema é a solução completa para o ciclo de vida dos seus ativos, garantindo planejamento, sustentabilidade e conformidade, de ponta a ponta.</p>
-                <div class="card-grid feature-grid">
+                <h2 class="section-title">O Desafio do Descarte Inadequado</h2>
+                <p class="lead-text">Dispositivos de TI se tornam obsoletos rapidamente. O problema vai além do custo: o **descarte inadequado causa graves problemas ambientais**, contaminando solo e água com metais pesados.</p>
+                
+                <div class="card-grid problem-grid">
+                    <div class="card problem-card">
+                        <div class="icon-circle problem-danger">🤖</div>
+                        <h4 class="card-title">Obsolescência Constante</h4>
+                        <p>A rápida evolução da tecnologia exige substituições, gerando um volume crescente de e-lixo.</p>
+                    </div>
+                    <div class="card problem-card">
+                        <div class="icon-circle problem-warning">⚠️</div>
+                        <h4 class="card-title">Risco Ambiental e de Saúde</h4>
+                        <p>Metais pesados (chumbo, mercúrio) contaminam o meio ambiente, representando sério perigo.</p>
+                    </div>
+                    <div class="card problem-card">
+                        <div class="icon-circle problem-info">📜</div>
+                        <h4 class="card-title">Falta de Conformidade Legal</h4>
+                        <p>Empresas podem sofrer multas e danos à imagem ao não seguir a Política Nacional de Resíduos Sólidos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="solucao" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">CyclePoint: Sua Plataforma de Gestão Sustentável</h2>
+                <p class="lead-text">Nossa solução é o caminho completo para o ciclo de vida dos seus ativos: planejamento, sustentabilidade e conformidade, de ponta a ponta.</p>
+                
+                <div class="card-grid feature-grid-big">
                     <div class="card feature-card">
-                        <h4 class="card-title"><span class="user-role number">1.</span> Monitoramento e Planejamento (O "GPS" do Ativo)</h4>
-                        <p>Atua como um "GPS", monitorando a vida útil de cada ativo. Indica com antecedência quando um equipamento se aproxima do fim da vida útil, permitindo um planejamento estratégico e redução de custos.</p>
+                        <div class="feature-step">01</div>
+                        <h3 class="card-title">Monitoramento e Planejamento</h3>
+                        <p>Atua como um "GPS" do ativo, indicando com antecedência quando o equipamento se aproxima do fim da vida útil, permitindo um planejamento estratégico e redução de custos operacionais.</p>
                     </div>
                     <div class="card feature-card">
-                        <h4 class="card-title"><span class="user-role number">2.</span> Descarte Sustentável (O Diferencial)</h4>
-                        <p>Funcionalidade principal. Orienta sobre a melhor forma de descartar cada ativo, priorizando a sustentabilidade e a conformidade com as rigorosas leis ambientais.</p>
+                        <div class="feature-step">02</div>
+                        <h3 class="card-title">Descarte Sustentável Inteligente</h3>
+                        <p>Funcionalidade principal. Orienta sobre a melhor forma de descartar cada ativo, priorizando a sustentabilidade e a conformidade com as rigorosas leis ambientais. Ações certas para cada tipo de resíduo.</p>
                     </div>
                     <div class="card feature-card">
-                        <h4 class="card-title"><span class="user-role number">3.</span> Conexão com a Rede de Coleta</h4>
-                        <p>O sistema não apenas indica *o quê* fazer, mas *como*. Conecta sua empresa a uma **rede homologada de coletores e centros de reciclagem**, otimizando a logística e a rastreabilidade do processo.</p>
+                        <div class="feature-step">03</div>
+                        <h3 class="card-title">Conexão com a Rede de Coleta</h3>
+                        <p>O sistema não apenas indica *o quê* fazer, mas *como*. Conecta sua empresa a uma **rede homologada de coletores e centros de reciclagem**, otimizando a logística e a rastreabilidade do processo, gerando certificados.</p>
                     </div>
                 </div>
             </div>
@@ -74,9 +93,9 @@
 
         <section id="cta" class="cta-section">
             <div class="container">
-                <h2>Garanta a Sustentabilidade e a Conformidade da sua operação.</h2>
-                <p>Pare de se preocupar com o descarte. Deixe o CyclePoint fazer o trabalho pesado.</p>
-                <a href="login.php" class="btn btn-primary btn-large">Quero Descartar de Forma Certa</a>
+                <h2 class="section-title cta-title">Pronto para Mudar o Jogo?</h2>
+                <p class="lead-text cta-lead">Garanta a Sustentabilidade e a Conformidade da sua operação de TI. Comece agora a gerenciar seu ciclo de vida de forma inteligente.</p>
+                <a href="login.php" class="btn btn-primary btn-large cta-final-btn">Quero Descartar de Forma Certa</a>
             </div>
         </section>
     </main>
@@ -84,9 +103,11 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 CyclePoint. Todos os direitos reservados.</p>
-            <p>Entre em contato: contato@cyclepoint.com</p>
+            <p>Sustentabilidade e Tecnologia a Serviço do Futuro.</p>
         </div>
     </footer>
 
+</body>
+</html>
 </body>
 </html>

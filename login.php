@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - CyclePoint</title>
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/login.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="login-body">
@@ -32,31 +32,45 @@
 
 
         <div class="auth-container">
-            <h2 class="title-primary">Acesso CyclePoint</h2>
-            <p class="role-hint">Entre com suas credenciais de usuário.</p>
-            
-            <form action="app/php/login.php" method="POST" class="form-content">
-                <div class="input-group">
-                    <label for="login-email">E-mail</label>
-                    <input type="email" id="login-email" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="login-senha">Senha</label>
-                    <input type="password" id="login-senha" name="senha" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Entrar</button>
-                <a href="#" class="forgot-link">Esqueceu a senha?</a>
-            </form>
+            <div class="auth-container">
+    
+    <div class="login-header">
+        <h2 class="title-primary">Acesso CyclePoint</h2>
+        <p class="role-hint">Entre com suas credenciais de usuário.</p>
+    </div>
+    
+    <form action="app/php/login.php" method="POST" class="form-content">
+        <div class="input-group">
+            <label for="login-email">E-mail</label>
+            <input type="email" id="login-email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="login-senha">Senha</label>
+            <input type="password" id="login-senha" name="senha" required>
+        </div>
+        
+        <div class="login-action-box">
+            <a href="#" class="forgot-link small-link">Esqueceu a senha?</a>
+            <button type="submit" class="btn btn-primary btn-full-width">Entrar</button>
+        </div>
+        
+    </form>
 
-            <p class="separator">ou</p>
-            
-            <a href="cadastro.html" class="btn btn-secondary">Cadastro de Empresa</a>
+    <p class="separator">Não tem conta?</p>
+    
+    <div class="registration-options">
+        <a href="cadastro.html" class="btn btn-secondary btn-full-width">
+            <span class="icon"></span> Cadastre sua Empresa
+        </a>
+        <a href="cadastro-usuario.html" class="btn btn-secondary btn-full-width">
+           <span class="icon"></span> Cadastre um Usuário
+        </a>
+    </div>
 
-            <a href="cadastro-usuario.html" class="btn btn-secondary">Cadastro de Usuário</a>
-
-            <a href="index.html" class="forgot-link" style="display: block; margin-top: 20px;">
-                &#x2190; Voltar para a Página Inicial
-            </a>
+    <a href="index.html" class="forgot-link back-to-home">
+        &#x2190; Voltar para a Página Inicial
+    </a>
+</div>
         </div>
     </div>
 
