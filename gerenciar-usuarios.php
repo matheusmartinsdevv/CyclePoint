@@ -29,7 +29,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                 <a href="meus-descartes.php" class="nav-item">Meus Descartes</a>
 
                 <?php if ($role_logado == 'administrador'): ?>
-                <a href="configuracoes.php" class="nav-item active">Configurações</a><?php endif; ?>
+                <a href="configuracoes.php" class="nav-item ">Configurações</a><?php endif; ?>
 
                 <?php if ($role_logado == 'administrador'): ?>
                 <a href="gerenciar-usuarios.php" class="nav-item active">Gerenciar Usuários</a><?php endif; ?>
