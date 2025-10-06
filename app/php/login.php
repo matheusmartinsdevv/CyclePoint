@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 $stmt_data->close();
                         
-                // REDIRECIONAR O USUÁRIO ADMINISTRADOR
+                // REDIRECIONAR A RECICLADORA
                 header("Location: ../../paginaRecicladora.php");
             }
 

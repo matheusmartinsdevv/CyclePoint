@@ -48,7 +48,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         <div class="container page-container">
             <h1 class="page-title">Cadastro de Equipamento de TI</h1>
             
-            <form action="/api/cadastro-equipamento" method="POST" class="form-content wide-form">
+            <form action="/api/php/cadastroEquipamento.php" method="POST" class="form-content wide-form">
                 <p class="form-description">Preencha todos os campos obrigatórios para registrar o novo ativo no sistema.</p>
                 
                 <div class="form-grid grid-2-columns">
@@ -87,6 +87,12 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                         <label for="aquisicao">Data de Aquisição*</label>
                         <input type="date" id="aquisicao" name="data_aquisicao" required>
                     </div>
+
+                    <div class="input-group">
+                        <label for="ip">Vida útil (em meses)</label>
+                        <input type="number" id="vida_util" name="vida_util" placeholder="Ex: 48">
+                    </div>
+
 
                     <div class="input-group">
                         <label for="ip">Endereço de IP</label>

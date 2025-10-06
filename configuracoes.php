@@ -44,12 +44,75 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         </div>
     </header>
 
+    <?php
+
+    // Verifica se há uma mensagem de feedback
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        $class = ($message['type'] === 'success') ? 'success-message-categoria' : 'error-message-categoria';
+        
+        echo '<div class="' . $class . '" style="background-color:#cdffed; padding: 5px;">'; 
+        echo htmlspecialchars($message['text']);
+        echo '</div>';
+        
+        
+        unset($_SESSION['message']);
+    }
+    ?>
+
     <main>
         <div class="container page-container">
             <h1 class="page-title">Configurações da Conta e do Sistema</h1>
             <p class="form-description">Gerencie informações da empresa, preferências de notificação e integrações.</p>
+
+            <h3 class="second-title">Cadastro de Categoria</h3>
+            
+            <form action="./app/php/cadastroCategoria.php" method="POST" class="form-content wide-form">
+                <p class="form-description">Preencha todos os campos obrigatórios para registrar a nova categoria no sistema.</p>
+                
+                <div class="form-grid grid-2-columns">
+
+                    <div class="input-group">
+                        <label for="modelo">Nome da Categoria*</label>
+                        <input type="text" id="nome-categoria" name="nome-categoria" placeholder="Ex: Notebook" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="modelo">Descrição da Categoria*</label>
+                        <input type="text" id="descricao-categoria" name="descricao-categoria" required>
+                    </div>
+
+                    
+                <button type="submit" class="btn btn-primary btn-large">Registrar Categoria</button>
+            </form>
         </div>
+
+        <!-- <div class="container page-container">
+            <h1 class="page-title">Cadastro de Categoria</h1>
+            
+            <form action="/api/php/cadastroCategoria.php" method="POST" class="form-content wide-form">
+                <p class="form-description">Preencha todos os campos obrigatórios para registrar a nova categoria no sistema.</p>
+                
+                <div class="form-grid grid-2-columns">
+
+                    <div class="input-group">
+                        <label for="modelo">Nome da Categoria*</label>
+                        <input type="text" id="nome-categoria" name="nome-categoria" placeholder="Ex: Notebook" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="modelo">Descrição da Categoria*</label>
+                        <input type="text" id="descricao-categoria" name="descricao-categoria" required>
+                    </div>
+
+                    
+                <button type="submit" class="btn btn-primary btn-large">Registrar Categoria</button>
+            </form>
+
+        </div> -->
     </main>
+
+    
 
     <footer class="footer">
         <div class="container">

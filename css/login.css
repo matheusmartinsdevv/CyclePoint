@@ -73,7 +73,7 @@ a:hover {
 
 @keyframes mascot-float {
 	0% { transform: translateY(0px) rotate(0deg); }
-	50% { transform: translateY(-10px) rotate(1deg); }
+	50% { transform: translateY(-5px) rotate(0deg); }
 	100% { transform: translateY(0px) rotate(0deg); }
 }
 
@@ -273,6 +273,25 @@ a:hover {
     z-index: 10;
     width: 80%;
     max-width: 600px;
+}
+
+.success-message-categoria {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 80%;
+    max-width: 600px;
+    background-color: #D6F9F5 !important;
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-color);
 }
 
 .success-message {

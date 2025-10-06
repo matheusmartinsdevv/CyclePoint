@@ -10,7 +10,7 @@
 </head>
 <body class="login-body">
 
-     <?php
+    <?php
     session_start();
 
     // Verifica se há uma mensagem de feedback
