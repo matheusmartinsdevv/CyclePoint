@@ -49,7 +49,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         <div class="container page-container">
             <h1 class="page-title">Cadastro de Equipamento de TI</h1>
             
-            <form action="/api/php/cadastroEquipamento.php" method="POST" class="form-content wide-form">
+            <form action="app/php/cadastroEquipamento.php" method="POST" class="form-content wide-form">
                 <p class="form-description">Preencha todos os campos obrigatórios para registrar o novo ativo no sistema.</p>
                 
                 <div class="form-grid grid-2-columns">

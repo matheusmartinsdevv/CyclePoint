@@ -320,6 +320,10 @@ hr {
     margin-bottom: 10px;
 }
 
+.normal-margin {
+    margin: 5px;
+}
+
 .second-title {
     font-size: 1.5em;
     font-weight: 700;
@@ -382,6 +386,14 @@ hr {
     margin: 0 auto 50px auto;
     color: #555;
 }
+
+.exibir-categoria {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 
 .hero {
     background-color: #00A693;
@@ -493,6 +505,12 @@ hr {
     .form-grid {
         grid-template-columns: 1fr;
     }
+    .exibir-categoria {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    }
     .address-grid .input-group:nth-child(2),
     .address-grid .input-group:nth-child(1),
     .address-grid .input-group:nth-child(3),
@@ -511,5 +529,7 @@ hr {
     .grid-2-columns {
         grid-template-columns: 1fr;
     }
+
+    
 }
 

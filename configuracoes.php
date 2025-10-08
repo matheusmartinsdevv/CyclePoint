@@ -16,6 +16,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurações - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/table.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -86,34 +87,50 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                     
                 <button type="submit" class="btn btn-primary btn-large">Registrar Categoria</button>
             </form>
+
+            
+            
+            
         </div>
 
-        <!-- <div class="container page-container">
-            <h1 class="page-title">Cadastro de Categoria</h1>
-            
-            <form action="/api/php/cadastroCategoria.php" method="POST" class="form-content wide-form">
-                <p class="form-description">Preencha todos os campos obrigatórios para registrar a nova categoria no sistema.</p>
+        <hr>
+
+        <div class="container page-container">
+            <h3 class="second-title">Exibir Categorias</h3>
+
+
+            <div class="form-content wide-form">
+
+                <div class="form-grid grid-2-columns exibir-categoria">
+
+                    <div class="input-group categoria-text">
+                        <h4>Nome da Categoria:</h4>
+                    </div>
+
+                    <div class="input-group categoria-text">
+                        <h4>Descrição da Categoria:</h4>
+                    </div>
+
+                </div>
+
+                <hr class="normal-margin">
+
+                <!-- CÓDIGO QUE CONECTA COM BANCO DE DADOS -->
+
+                <div style="display: flex; justify-content: space-between;">
+                    <span class="nome_categoria"></span>
+                    <span class="descricao_categoria"></span>
+                </div>
+
+                <hr class="normal-margin">
+
                 
-                <div class="form-grid grid-2-columns">
+            </div>
+        </div>
 
-                    <div class="input-group">
-                        <label for="modelo">Nome da Categoria*</label>
-                        <input type="text" id="nome-categoria" name="nome-categoria" placeholder="Ex: Notebook" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="modelo">Descrição da Categoria*</label>
-                        <input type="text" id="descricao-categoria" name="descricao-categoria" required>
-                    </div>
-
-                    
-                <button type="submit" class="btn btn-primary btn-large">Registrar Categoria</button>
-            </form>
-
-        </div> -->
+        
     </main>
 
-    
 
     <footer class="footer">
         <div class="container">
@@ -121,5 +138,14 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         </div>
     </footer>
 
+    <script>
+        
+        const nome_categoria = document.querySelector(".nome_categoria");
+        const descricao_categoria = document.querySelector(".descricao_categoria");
+
+        
+
+
+    </script>
 </body>
 </html>
