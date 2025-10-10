@@ -56,6 +56,7 @@
         
     </form>
 
+    <!-- class="separator" -->
     <p class="separator">Não tem conta?</p>
     
     <div class="registration-options">

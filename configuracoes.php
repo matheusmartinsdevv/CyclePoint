@@ -101,7 +101,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
             <div class="form-content wide-form">
 
-                <div class="form-grid grid-2-columns exibir-categoria">
+                <div class="form-grid grid-2-columns exibir-categoria" style="justify-content: space-around;">
 
                     <div class="input-group categoria-text">
                         <h4>Nome da Categoria:</h4>
@@ -117,12 +117,17 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
                 <!-- CÓDIGO QUE CONECTA COM BANCO DE DADOS -->
 
-                <div style="display: flex; justify-content: space-between;">
-                    <span class="nome_categoria"></span>
+                <div class="exibir_categorias" style="display: flex; justify-content: space-around; flex-direction: column">
+
+                    <?php include 'app/php/exibirCategorias.php'; ?>
+
+
+                    <!-- <span class="nome_categoria"></span>
                     <span class="descricao_categoria"></span>
+                    <hr class="normal-margin"> -->
                 </div>
 
-                <hr class="normal-margin">
+                
 
                 
             </div>
@@ -138,14 +143,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         </div>
     </footer>
 
-    <script>
-        
-        const nome_categoria = document.querySelector(".nome_categoria");
-        const descricao_categoria = document.querySelector(".descricao_categoria");
+      <script src="js/configuracoes.js"></script>
 
-        
-
-
-    </script>
 </body>
 </html>
