@@ -115,7 +115,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
                 <hr class="normal-margin">
 
-                <!-- CÓDIGO QUE CONECTA COM BANCO DE DADOS -->
+                <!-- CÓDIGO QUE CONECTA COM exibirCategorias.php -->
 
                 <div class="exibir_categorias" style="display: flex; justify-content: space-around; flex-direction: column">
 
