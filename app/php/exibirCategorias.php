@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
+$conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
 $stmt = $conn->prepare("SELECT nome_categoria, descricao FROM categoria");
 $stmt->execute();

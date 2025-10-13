@@ -1,13 +1,6 @@
-// const nome_categoria = document.querySelector(".nome_categoria");
-// const descricao_categoria = document.querySelector(".descricao_categoria");
-
-// nome_categoria.innerHTML = "Novo Conteúdo";
-// descricao_categoria.innerHTML = "Descricaooao aoaooao oao"
-
-// ------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
-            fetch('../app/php/exibirCategoria.php') // Envia a requisição para o PHP
+            fetch('../app/php/exibirCategoria.php')
                 .then(response => response.json()) // Converte a resposta para JSON
                 .then(data => {
                     document.getElementById('.exibir_categorias').innerHTML = `

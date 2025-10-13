@@ -58,13 +58,16 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                         <label for="categoria">Categoria* (Tipo de Equipamento)</label>
                         <select id="categoria" name="categoria" required>
                             <option value="" disabled selected>Selecione a Categoria</option>
-                            <option value="desktop">Desktop</option>
+                            <option value="aaaaaaa" disabled >aaaaaaa</option>
+                            
+                            
+                            <!-- <option value="desktop">Desktop</option>
                             <option value="notebook">Notebook</option>
                             <option value="monitor">Monitor</option>
                             <option value="servidor">Servidor</option>
                             <option value="impressora">Impressora</option>
                             <option value="celular">Celular Corporativo</option>
-                            <option value="outro">Outro</option>
+                            <option value="outro">Outro</option> -->
                         </select>
                     </div>
 
