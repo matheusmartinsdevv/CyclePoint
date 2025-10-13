@@ -122,9 +122,6 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                     <?php include 'app/php/exibirCategorias.php'; ?>
 
 
-                    <!-- <span class="nome_categoria"></span>
-                    <span class="descricao_categoria"></span>
-                    <hr class="normal-margin"> -->
                 </div>
 
                 

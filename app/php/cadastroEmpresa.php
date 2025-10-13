@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost:3307", "root", "", "cyclepoint_database");
+$conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
 // CONECTA COM FORMULARIO DE CADASTRO DE EMPRESA
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefone = $_POST['telefone']; 
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+    $data_cadastro = date("Y-m-d");
 
     $logradouro = $_POST['logradouro'];
     $numero = $_POST['numero'];
@@ -19,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pais = $_POST['pais'];
 
 
-    $stmt = $conn->prepare("INSERT INTO empresa (razao_social, nome_fantasia, cnpj, telefone, email, senha) values (?,?,?,?,?,?);");
+    $stmt = $conn->prepare("INSERT INTO empresa (razao_social, nome_fantasia, cnpj, telefone, email, senha, data_cadastro) values (?,?,?,?,?,?,?);");
 
-    $stmt->bind_param("ssssss", $razao_social, $nome_fantasia, $cnpj, $telefone, $email, $senha);
+    $stmt->bind_param("sssssss", $razao_social, $nome_fantasia, $cnpj, $telefone, $email, $senha, $data_cadastro);
 
     if ($stmt->execute()) {
         $id_empresa_inserido = mysqli_insert_id($conn);
