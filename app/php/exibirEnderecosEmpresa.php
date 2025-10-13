@@ -22,8 +22,8 @@ while ($dados_endereco_empresa = $result->fetch_assoc()) {
 
 
     echo '<div class="endereco">';
-    echo '<span class="local">'. $logradouro .', '. $numero . ' - ' . $cidade. ', '. $estado . ' - '. $pais . '</span>';
-    echo '<button class="btn-tornar-principal">🜲 Tornar principal (verificar necessidade)</button>';
+    echo '<span class="local">'. $logradouro .', '. $numero . ', '. $bairro . ' - ' . $cidade. ', '. $estado . ' - '. $pais . '</span>';
+    echo '<button class="btn btn-primary">Editar</button>';
     echo '</div>';
 };
 

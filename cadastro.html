@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - CyclePoint</title>
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="cadastro-body">
 
     <div class="auth-container large-container">
         <h2 class="title-primary">Novo Cadastro</h2>
         <p class="role-hint">Selecione o seu perfil para prosseguir.</p>
-        
+
         <div class="input-group">
             <label for="tipo_cadastro">Eu sou uma:</label>
             <select id="tipo_cadastro" onchange="switchRegistrationForm()">
@@ -22,45 +24,55 @@
         </div>
 
         <!-- CADASTRO DE EMPRESA COMUM -->
-        <form id="form-empresa-comum" action="./app/php/cadastroEmpresa.php" method="POST" class="registration-form active">
+        <form id="form-empresa-comum" action="./app/php/cadastroEmpresa.php" method="POST"
+            class="registration-form active">
             <h3>Dados da Empresa Comum</h3>
-            
+
             <div class="form-grid">
-                <div class="input-group"><label>Razão Social*</label><input type="text" name="razao_social" required></div>
-                <div class="input-group"><label>Nome Fantasia*</label><input type="text" name="nome_fantasia" required></div>
-                <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" maxlength="18" required></div>
-                <div class="input-group"><label>Telefone</label><input type="text" name="telefone" ></div>
+                <div class="input-group"><label>Razão Social*</label><input type="text" name="razao_social" required>
+                </div>
+                <div class="input-group"><label>Nome Fantasia*</label><input type="text" name="nome_fantasia" required>
+                </div>
+                <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" maxlength="18" required>
+                </div>
+                <div class="input-group"><label>Telefone</label><input type="text" name="telefone"></div>
             </div>
             <hr>
-            
+
             <h4>Acesso de administrador</h4>
             <div class="form-grid">
                 <div class="input-group"><label>E-mail*</label><input type="email" name="email" required></div>
-                <div class="input-group"><label>Defina a Senha*</label><input type="password" name="senha" required></div>
+                <div class="input-group"><label>Defina a Senha*</label><input type="password" name="senha" required>
+                </div>
             </div>
             <hr>
-            
+
             <h4>Endereço da Sede</h4>
             <div class="form-grid address-grid">
                 <div class="input-group"><input type="text" placeholder="Logradouro" name="logradouro" required></div>
-                <div class="input-group"><input type="text" placeholder="Nº" name="numero" required class="input-small"></div>
+                <div class="input-group"><input type="text" placeholder="Nº" name="numero" required class="input-small">
+                </div>
                 <div class="input-group"><input type="text" placeholder="Bairro" name="bairro"></div>
                 <div class="input-group"><input type="text" placeholder="Cidade" name="cidade" required></div>
                 <div class="input-group"><input type="text" placeholder="Estado" name="estado" required></div>
-                <div class="input-group"><input type="text" placeholder="País" name="pais" value="Brasil" required></div>
+                <div class="input-group"><input type="text" placeholder="País" name="pais" value="Brasil" required>
+                </div>
             </div>
-            
+
             <button type="submit" class="btn btn-primary btn-large">Cadastrar Empresa Comum</button>
         </form>
 
         <!-- CADASTRO DE RECICLADORA -->
         <form id="form-recicladora" action="./app/php/cadastroRecicladora.php" method="POST" class="registration-form">
             <h3>Dados da Empresa Recicladora</h3>
-             
+
             <div class="form-grid">
-                <div class="input-group"><label>Razão Social*</label><input type="text" name="razao_social" required></div>
-                <div class="input-group"><label>Nome Fantasia*</label><input type="text" name="nome_fantasia" required></div>
-                <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" maxlength="18" required></div>
+                <div class="input-group"><label>Razão Social*</label><input type="text" name="razao_social" required>
+                </div>
+                <div class="input-group"><label>Nome Fantasia*</label><input type="text" name="nome_fantasia" required>
+                </div>
+                <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" maxlength="18" required>
+                </div>
                 <div class="input-group"><label>Telefone*</label><input type="text" name="telefone" required></div>
             </div>
             <hr>
@@ -68,41 +80,45 @@
             <h4>Acesso</h4>
             <div class="form-grid">
                 <div class="input-group"><label>E-mail*</label><input type="email" name="email" required></div>
-                <div class="input-group"><label>Defina a Senha*</label><input type="password" name="senha" required></div>
+                <div class="input-group"><label>Defina a Senha*</label><input type="password" name="senha" required>
+                </div>
             </div>
-            
+
             <h4>Endereço</h4>
             <div class="form-grid address-grid">
                 <div class="input-group"><input type="text" placeholder="Logradouro" name="logradouro" required></div>
-                <div class="input-group"><input type="number" placeholder="Nº" name="numero" required class="input-small"></div>
+                <div class="input-group"><input type="number" placeholder="Nº" name="numero" required
+                        class="input-small"></div>
                 <div class="input-group"><input type="text" placeholder="Bairro" name="bairro"></div>
                 <div class="input-group"><input type="text" placeholder="Cidade" name="cidade" required></div>
                 <div class="input-group"><input type="text" placeholder="Estado" name="estado" required></div>
-                <div class="input-group"><input type="text" placeholder="País" name="pais" value="Brasil" required></div>
+                <div class="input-group"><input type="text" placeholder="País" name="pais" value="Brasil" required>
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary btn-large">Cadastrar Recicladora</button>
         </form>
 
-        <a href="login.php" class="forgot-link">Já tem cadastro? Voltar para o Login.</a> 
+        <a href="login.php" class="forgot-link">Já tem cadastro? Voltar para o Login.</a>
     </div>
 
     <script>
 
-    function switchRegistrationForm() {
-        const selectedValue = document.getElementById('tipo_cadastro').value;
+        function switchRegistrationForm() {
+            const selectedValue = document.getElementById('tipo_cadastro').value;
 
-        const formComum = document.getElementById('form-empresa-comum');
-        const formRecicladora = document.getElementById('form-recicladora');
+            const formComum = document.getElementById('form-empresa-comum');
+            const formRecicladora = document.getElementById('form-recicladora');
 
-        if (selectedValue === 'empresa_comum') {
-            formComum.classList.add('active');
-            formRecicladora.classList.remove('active');
-        } else if (selectedValue === 'recicladora') {
-            formComum.classList.remove('active');
-            formRecicladora.classList.add('active');
+            if (selectedValue === 'empresa_comum') {
+                formComum.classList.add('active');
+                formRecicladora.classList.remove('active');
+            } else if (selectedValue === 'recicladora') {
+                formComum.classList.remove('active');
+                formRecicladora.classList.add('active');
+            }
         }
-    }
     </script>
 </body>
+
 </html>
