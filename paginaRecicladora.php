@@ -24,7 +24,9 @@ $nome_logado_display = isset($_SESSION['nome_logado_display']) ? $_SESSION['nome
         <div class="container">
             <img class="logo" src="img/logo.png" alt="CyclePoint Logo">
             <nav>
-                <a href="paginaRecicladora.php" class="nav-item active">Coletas</a>
+                <a href="paginarRecicladora.php" class="nav-item active">Coletas</a>
+
+                <a href="itens-que-coleto.php" class="nav-item">itens que coleto</a>
 
                 <div class="user-info">
                     <span class="user-role"><?php echo $nome_logado_display; ?></span> 
