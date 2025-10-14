@@ -16,6 +16,32 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css"> 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    
+    <script>
+        // Configuração do Tailwind (estendendo cores usando as variáveis CSS)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': 'var(--color-primary)', 
+                        'secondary': 'var(--color-secondary)',
+                        'background': 'var(--color-background)',
+                        'surface': '#ffffff',
+                        'text-primary': 'var(--color-text-primary)',
+                        'danger': 'var(--color-danger)',
+                        'warning': 'var(--color-warning)',
+                        'success': 'var(--color-success)',
+                        'info': 'var(--color-info)',
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -78,6 +104,24 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                     <p class="card-detail">Próximo agendamento:.</p>
                 </div>
             </div>
+            <!-- Seção do Gráfico -->
+            <div class="bg-surface p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-100"> 
+                <h2 class="text-2xl font-bold mb-4 flex items-center text-text-primary">
+                    <!-- Ícone de Gráfico (classes de cor customizadas) -->
+                    <span class="chart-icon w-6 h-6 mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20V10"/>
+                            <path d="M18 20V4"/>
+                            <path d="M6 20v-4"/>
+                        </svg>
+                    </span>
+                    Status dos Equipamentos por Tipo
+                </h2>
+                
+                <div class="w-full h-80">
+                    <canvas id="graficoStatusEquipamentos"></canvas>
+                </div>
+            </div>
 
             <h2 class="section-title">Ações do Sistema</h2>
             
@@ -94,6 +138,91 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
             <p>&copy; 2025 CyclePoint. Gerenciamento de Ativos de TI.</p>
         </div>
     </footer>
+        <!-- JavaScript para o Gráfico Chart.js -->
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dados simulados (que viriam de uma API real)
+            const dadosSimulados = {
+                labels: ["Monitores", "CPUs", "Impressoras", "Notebooks", "Servidores"],
+                em_uso: [150, 90, 45, 120, 20], 
+                a_descartar: [15, 8, 3, 10, 2]  
+            };
+
+            const dados = dadosSimulados;
+            const ctxStatus = document.getElementById('graficoStatusEquipamentos').getContext('2d');
+            
+            // Configuração do Gráfico de Barras
+            new Chart(ctxStatus, {
+                type: 'bar',
+                data: {
+                    labels: dados.labels,
+                    datasets: [
+                        {
+                            label: 'Em Uso (Ativo)',
+                            data: dados.em_uso, 
+                            backgroundColor: 'rgba(52, 152, 219, 0.9)', // Azul
+                            borderColor: 'rgba(41, 128, 185, 1)',
+                            borderRadius: 6,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'A Descartar (Pendente)',
+                            data: dados.a_descartar, 
+                            backgroundColor: 'rgba(231, 76, 60, 0.9)', // Vermelho
+                            borderColor: 'rgba(192, 57, 43, 1)',
+                            borderRadius: 6,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // Permite que o gráfico use o tamanho do container H-80
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) { label += context.parsed.y + ' Unidades'; }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { weight: 'bold' } },
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Contagem de Unidades',
+                                color: '#4b5563'
+                            },
+                            ticks: {
+                                precision: 0,
+                                callback: function(value) {
+                                    if (value % 1 === 0) { return value; }
+                                }
+                            },
+                            // Mantendo a remoção das linhas horizontais para um visual mais limpo
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        });
+    </script>w
 
 </body>
 </html>
