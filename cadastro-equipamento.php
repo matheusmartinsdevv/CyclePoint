@@ -1,12 +1,12 @@
 <?php
 session_start();
-// $id_logado = $_SESSION['id_usuario'];
-// $nome_logado = $_SESSION['nome_usuario'];
+
 
 $nome_logado_display = isset($_SESSION['nome_logado_display']) ? $_SESSION['nome_logado_display'] : 'Visitante';
 $role_logado = isset($_SESSION['role']) ? $_SESSION['role'] : 'deslogado';
 
 $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Comum';
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Equipamento - CyclePoint</title>
+    <title>Equipamentos - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -93,7 +93,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
                     <div class="input-group">
                         <label for="ip">Vida útil (em meses)</label>
-                        <input type="number" id="vida_util" name="vida_util" placeholder="Ex: 48">
+                        <input type="number" id="vida_util" name="vida_util_meses" placeholder="Ex: 48">
                     </div>
 
 
@@ -103,8 +103,16 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                     </div>
                     
                     <div class="input-group">
-                        <label for="local">Local de Alocação*</label>
-                        <input type="text" id="local" name="local_alocacao" placeholder="Ex: Sala 301, Térreo/TI" required>
+                        <label for="endereco">Endereço de alocação*</label>
+                        <select id="endereco" name="endereco" required>
+                            <option value="" disabled selected>Selecione o Endereço</option>
+                            
+                            <!-- DINÂMICO -->
+
+                            <?php include 'app/php/listarEnderecosEmpresa.php'; ?>
+
+
+                        </select>
                     </div>
                 </div>
 

@@ -4,21 +4,17 @@ $conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
 // CONECTA COM FORMULARIO DE CADASTRO DE EQUIPAMENTO
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $razao_social = $_POST['razao_social']; 
-    $nome_fantasia = $_POST['nome_fantasia']; 
-    $cnpj = $_POST['cnpj'];
-    $telefone = $_POST['telefone']; 
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+    $nome_equipamento = $_POST['nome-equipamento'];
+    $endereco_ip = $_POST['ip'];
+    $fabricante = $_POST['fabricante'];
+    $modelo = $_POST['modelo'];
+    $data_aquisicao = $_POST['data_aquisicao'];
+    $vida_util_meses = $_POST['vida_util_meses'];
+    $status_equipamento = ;
+    
+    
 
-    $logradouro = $_POST['logradouro'];
-    $numero = $_POST['numero'];
-    $bairro = $_POST['bairro'];
-    $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
-    $pais = $_POST['pais'];
-
-
+    // ADAPTAR PARA CADASTRO DE EQUIPAMENTO
     $stmt = $conn->prepare("INSERT INTO empresa (razao_social, nome_fantasia, cnpj, telefone, email, senha) values (?,?,?,?,?,?);");
 
     $stmt->bind_param("ssssss", $razao_social, $nome_fantasia, $cnpj, $telefone, $email, $senha);

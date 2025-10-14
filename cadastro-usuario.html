@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Usuário - CyclePoint</title>
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="cadastro-body">
 
     <div class="auth-container large-container">
@@ -15,12 +17,13 @@
         <!-- CADASTRO DE USUÁRIO -->
         <form id="form-usuario" action="./app/php/cadastroUsuario.php" method="POST" class="registration-form active">
             <h3>Dados do Usuário</h3>
-            
+
             <div class="form-grid">
                 <div class="input-group"><label>Nome*</label><input type="text" name="nome" required></div>
                 <div class="input-group"><label>Cargo</label><input type="text" name="cargo" required></div>
                 <div class="input-group"><label>E-mail*</label><input type="email" name="email" required></div>
-                <div class="input-group"><label>Defina sua Senha*</label><input type="password" name="senha" required></div>
+                <div class="input-group"><label>Defina sua Senha*</label><input type="password" name="senha" required>
+                </div>
             </div>
             <hr>
 
@@ -29,32 +32,33 @@
                 <div class="input-group"><label>Razão Social</label><input type="text" name="razao_social"></div>
                 <div class="input-group"><label>CNPJ*</label><input type="text" name="cnpj" required></div>
             </div>
-            
+
             <button type="submit" class="btn btn-primary btn-large">Cadastrar Usuário</button>
         </form>
 
-        
+
         <!-- <p class="note">Após o cadastro, o <strong>id_usuario</strong> é gerado automaticamente.</p> -->
 
-        <a href="login.php" class="forgot-link">Já tem cadastro? Voltar para o Login.</a> 
+        <a href="login.php" class="forgot-link">Já tem cadastro? Voltar para o Login.</a>
     </div>
 
     <script>
 
-    function switchRegistrationForm() {
-        const selectedValue = document.getElementById('tipo_cadastro').value;
+        function switchRegistrationForm() {
+            const selectedValue = document.getElementById('tipo_cadastro').value;
 
-        const formComum = document.getElementById('form-empresa-comum');
-        const formRecicladora = document.getElementById('form-recicladora');
+            const formComum = document.getElementById('form-empresa-comum');
+            const formRecicladora = document.getElementById('form-recicladora');
 
-        if (selectedValue === 'empresa_comum') {
-            formComum.classList.add('active');
-            formRecicladora.classList.remove('active');
-        } else if (selectedValue === 'recicladora') {
-            formComum.classList.remove('active');
-            formRecicladora.classList.add('active');
+            if (selectedValue === 'empresa_comum') {
+                formComum.classList.add('active');
+                formRecicladora.classList.remove('active');
+            } else if (selectedValue === 'recicladora') {
+                formComum.classList.remove('active');
+                formRecicladora.classList.add('active');
+            }
         }
-    }
     </script>
 </body>
+
 </html>

@@ -49,6 +49,22 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         </div>
     </header>
 
+    <?php
+
+    // Verifica se há uma mensagem de feedback
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        $class = ($message['type'] === 'success') ? 'success-message-categoria' : 'error-message-categoria';
+        
+        echo '<div class="' . $class . '" style="background-color:#cdffed; padding: 5px;">'; 
+        echo htmlspecialchars($message['text']);
+        echo '</div>';
+        
+        
+        unset($_SESSION['message']);
+    }
+    ?>
+
     <main>
         <div class="container page-container">
             <h1 class="page-title">Gerenciamento de endereços</h1>
