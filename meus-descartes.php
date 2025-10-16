@@ -64,17 +64,9 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
             <div class="form-content wide-form">
 
-            <div class="recicladora">
-                <h4>Nome - TESTE</h4>
-                <p>Descrição Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe laudantium quibusdam enim atque culpa, eaque aperiam non ratione provident iste sint corporis doloribus natus, autem repellendus voluptatum? Corporis, temporibus earum!</p>
-                <hr>
-                <span>Rua jorge, 45 - Jardim Paulo</span><br>
-                <span>Curitiba, Paraná - Brasil</span>
-                <p>(41) 99745-3493</p>
-                <p>nome@gmail.com</p>
 
-                <button type="submit" class="btn btn-primary btn-large">Solicitar descarte</button>
-            </div>
+                <?php include 'app/php/mostrarRecicladoras.php'; ?>
+
 
             </div>
 
