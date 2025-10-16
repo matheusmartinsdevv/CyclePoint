@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
 // CONECTA COM FORMULARIO DE CADASTRO DE EQUIPAMENTO
@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $categoria = $_POST['categoria'];
     $endereco = $_POST['endereco'];
 
+    // PEGA ID_CATEGORIA
     $stmt_categoria = $conn->prepare("SELECT id_categoria FROM categoria WHERE nome_categoria = ?;");
     $stmt_categoria->bind_param("s", $categoria);
     $stmt_categoria->execute();
@@ -21,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_categoria = $row['id_categoria'];
     }
 
-
+    // PEGA ID_ENDERECO_EMPRESA
     $stmt_endereco_empresa = $conn->prepare("SELECT id_endereco_empresa FROM endereco_empresa WHERE logradouro = ?");
     $stmt_endereco_empresa->bind_param("s", $endereco);
     $stmt_endereco_empresa->execute();
@@ -30,13 +31,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_endereco_empresa = $row['id_endereco_empresa'];
     }
 
-    
-    
+    // PEGA ID_EMPRESA
+    if (isset($_SESSION['id_empresa'])) {
+        $id_empresa = $_SESSION['id_empresa'];
+    } else {
+        die("Erro: ID da empresa não encontrado na sessão."); 
+    }
+
 
     // CADASTRO DE EQUIPAMENTO
-    $stmt = $conn->prepare("INSERT INTO equipamento (nome_equipamento, fabricante, modelo, data_aquisicao, vida_util_meses, id_categoria, id_endereco_empresa, endereco_mac) values (?,?,?,?,?,?,?,?);");
+    $stmt = $conn->prepare("INSERT INTO equipamento (nome_equipamento, fabricante, modelo, data_aquisicao, vida_util_meses, id_categoria, id_endereco_empresa, endereco_mac, id_empresa) values (?,?,?,?,?,?,?,?,?);");
 
-    $stmt->bind_param("ssssiiis", $nome_equipamento, $fabricante, $modelo, $data_aquisicao, $vida_util_meses, $id_categoria, $id_endereco_empresa, $endereco_mac);
+    $stmt->bind_param("ssssiiisi", $nome_equipamento, $fabricante, $modelo, $data_aquisicao, $vida_util_meses, $id_categoria, $id_endereco_empresa, $endereco_mac, $id_empresa);
 
     if ($stmt->execute()) {
 

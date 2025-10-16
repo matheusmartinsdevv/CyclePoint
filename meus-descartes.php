@@ -14,7 +14,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Descartes - CyclePoint</title>
+    <title>Descartes - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -26,9 +26,9 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
             <nav>
                 <a href="dashboard.php" class="nav-item">Dashboard</a>
 
-                <a href="cadastro-equipamento.php" class="nav-item">Cadastrar Equipamento</a>
+                <a href="cadastro-equipamento.php" class="nav-item">Equipamentos</a>
 
-                <a href="meus-descartes.php" class="nav-item active">Meus Descartes</a>
+                <a href="meus-descartes.php" class="nav-item active">Descartes</a>
 
                 <?php if ($role_logado == 'administrador'): ?>
                 <a href="configuracoes.php" class="nav-item ">Configurações</a><?php endif; ?>
@@ -52,6 +52,33 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         <div class="container page-container">
             <h1 class="page-title">Histórico e Agendamentos de Descartes</h1>
             <p class="form-description">Aqui você pode acompanhar o status de seus ativos de TI em processo de descarte e agendar novas coletas.</p>
+
+            <h3 class="second-title">Pesquisar Recicladoras</h3>
+
+            <input type="text">
+            <button>Pesquisar</button>
+            <span>Filtrar por:</span>
+            <button>Cidade</button>
+            <button>Estado</button>
+            <button>País</button>
+
+            <div class="form-content wide-form">
+
+            <div class="recicladora">
+                <h4>Nome - TESTE</h4>
+                <p>Descrição Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe laudantium quibusdam enim atque culpa, eaque aperiam non ratione provident iste sint corporis doloribus natus, autem repellendus voluptatum? Corporis, temporibus earum!</p>
+                <hr>
+                <span>Rua jorge, 45 - Jardim Paulo</span><br>
+                <span>Curitiba, Paraná - Brasil</span>
+                <p>(41) 99745-3493</p>
+                <p>nome@gmail.com</p>
+
+                <button type="submit" class="btn btn-primary btn-large">Solicitar descarte</button>
+            </div>
+
+            </div>
+
+
         </div>
     </main>
     

@@ -26,9 +26,9 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
             <nav>
                 <a href="dashboard.php" class="nav-item">Dashboard</a>
 
-                <a href="cadastro-equipamento.php" class="nav-item active">Cadastrar Equipamento</a>
+                <a href="cadastro-equipamento.php" class="nav-item active">Equipamentos</a>
 
-                <a href="meus-descartes.php" class="nav-item">Meus Descartes</a>
+                <a href="meus-descartes.php" class="nav-item">Descartes</a>
 
                 <?php if ($role_logado == 'administrador'): ?>
                 <a href="configuracoes.php" class="nav-item ">Configurações</a><?php endif; ?>
@@ -48,15 +48,33 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         </div>
     </header>
 
+    <?php
+
+    // Verifica se há uma mensagem de feedback
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        $class = ($message['type'] === 'success') ? 'success-message-categoria' : 'error-message-categoria';
+        
+        echo '<div class="' . $class . '" style="background-color:#cdffed; padding: 5px;">'; 
+        echo htmlspecialchars($message['text']);
+        echo '</div>';
+        
+        
+        unset($_SESSION['message']);
+    }
+    ?>
+
     <main>
         <div class="container page-container">
-            <h1 class="page-title">Cadastro de Equipamento de TI</h1>
-            
+            <h1 class="page-title">Gestão de Equipamentos</h1>
+            <hr>
+
+            <h3 class="second-title">Registrar Equipamentos</h3>
             <form action="app/php/cadastroEquipamento.php" method="POST" class="form-content wide-form">
                 <p class="form-description">Preencha todos os campos obrigatórios para registrar o novo ativo no sistema.</p>
-                
+
                 <div class="form-grid grid-2-columns">
-                    
+ 
                     <div class="input-group">
                         <label for="categoria">Categoria* (Tipo de Equipamento)</label>
                         <select id="categoria" name="categoria" required>
@@ -127,23 +145,19 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
             <div class="form-content wide-form">
 
-                <div class="form-grid grid-2-columns exibir-categoria" style="justify-content: space-around;">
+                <!-- <div class="form-grid grid-2-columns exibir-categoria" style="justify-content: space-around;">
 
                     <div class="input-group categoria-text">
                         <h4>Nome do Equipamento:</h4>
                     </div>
 
-                    <div class="input-group categoria-text">
-                        <h4>Modelo:</h4>
-                    </div>
 
                 </div>
 
-                <hr class="normal-margin">
+                <hr class="normal-margin"> -->
 
                 <!-- CÓDIGO QUE CONECTA COM exibirEquipamento.php -->
-
-                <div class="exibir_categorias" style="display: flex; justify-content: space-around; flex-direction: column">
+                <div>
 
                     <?php include 'app/php/exibirEquipamento.php'; ?>
 

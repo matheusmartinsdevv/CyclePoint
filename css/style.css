@@ -308,6 +308,12 @@ hr {
     transition: transform 0.3s;
 }
 
+.equipamento {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
 .card:hover {
     transform: translateY(-3px);
 }
