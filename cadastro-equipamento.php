@@ -92,15 +92,15 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                     </div>
 
                     <div class="input-group">
-                        <label for="ip">Vida útil (em meses)</label>
+                        <label for="vida_util">Vida útil (em meses)</label>
                         <input type="number" id="vida_util" name="vida_util_meses" placeholder="Ex: 48">
                     </div>
 
-
                     <div class="input-group">
-                        <label for="ip">Endereço de IP</label>
-                        <input type="text" id="ip" name="ip" placeholder="Ex: 192.168.1.100">
+                        <label for="endereco_mac">Endereço MAC</label>
+                        <input type="text" id="endereco_mac" name="endereco_mac" placeholder="Ex: 00:1A:2B:3C:4D:5E">
                     </div>
+                    
                     
                     <div class="input-group">
                         <label for="endereco">Endereço de alocação*</label>
@@ -119,6 +119,41 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                 <button type="submit" class="btn btn-primary btn-large">Registrar Equipamento</button>
             </form>
 
+        </div>
+
+        <div class="container page-container">
+            <h3 class="second-title">Exibir Equipamentos</h3>
+
+
+            <div class="form-content wide-form">
+
+                <div class="form-grid grid-2-columns exibir-categoria" style="justify-content: space-around;">
+
+                    <div class="input-group categoria-text">
+                        <h4>Nome do Equipamento:</h4>
+                    </div>
+
+                    <div class="input-group categoria-text">
+                        <h4>Modelo:</h4>
+                    </div>
+
+                </div>
+
+                <hr class="normal-margin">
+
+                <!-- CÓDIGO QUE CONECTA COM exibirEquipamento.php -->
+
+                <div class="exibir_categorias" style="display: flex; justify-content: space-around; flex-direction: column">
+
+                    <?php include 'app/php/exibirEquipamento.php'; ?>
+
+
+                </div>
+
+                
+
+                
+            </div>
         </div>
     </main>
 

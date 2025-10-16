@@ -16,7 +16,7 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css"> 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
     
     <script>
@@ -41,8 +41,8 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                 }
             }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </script> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
 </head>
 <body>
 

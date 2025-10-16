@@ -106,17 +106,6 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
                     <?php include 'app/php/exibirEnderecosEmpresa.php'; ?>
 
-                    <!-- <div class="endereco">
-                        <span class="local">Rua wilson jorge, 234 - Curitiba, Paraná - Brasil</span>
-                        <button class="btn-tornar-principal">🜲 Tornar principal</button>
-                    </div>
-
-                    <div class="endereco">
-                        <span class="local">Rua wilson jorge, 234 - Curitiba, Paraná - Brasil</span>
-                        <button class="btn-tornar-principal">🜲 Tornar principal</button>
-                    </div> -->
-
-
 
                 </div>
 

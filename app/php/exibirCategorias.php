@@ -2,7 +2,14 @@
 
 $conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
-$stmt = $conn->prepare("SELECT nome_categoria, descricao FROM categoria");
+if (isset($_SESSION['id_empresa'])) {
+        $id_empresa = $_SESSION['id_empresa'];
+    } else {
+        die("Erro: ID da empresa não encontrado na sessão."); 
+    }
+
+$stmt = $conn->prepare("SELECT nome_categoria, descricao FROM categoria WHERE id_empresa = ?");
+$stmt->bind_param("i", $id_empresa);
 $stmt->execute();
 $result = $stmt->get_result();
 
