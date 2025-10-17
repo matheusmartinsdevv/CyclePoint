@@ -30,6 +30,14 @@ body {
     border: 2px solid transparent;
 }
 
+input[type="checkbox"] {
+  accent-color: #017265; 
+  width: 20px;
+  height: 20px;
+  margin: 0px 5px;
+  cursor: pointer;
+}
+
 .btn-secondary {
     color: #333333;
 }
