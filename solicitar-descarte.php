@@ -36,6 +36,20 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
         </div>
     </header>
 
+    <?php
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        $class = ($message['type'] === 'success') ? 'success-message-categoria' : 'error-message-categoria';
+        
+        echo '<div class="' . $class . '" style="background-color:#cdffed; padding: 5px;">'; 
+        echo htmlspecialchars($message['text']);
+        echo '</div>';
+        
+        
+        unset($_SESSION['message']);
+    }
+    ?>
+
 
     <main>
         <div class="container page-container">
@@ -47,27 +61,21 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
             
 
             <div class="container page-container">
-            <!-- <h3 class="second-title">Exibir Equipamentos</h3> -->
 
 
-            <div class="form-content wide-form">
-
-                <div>
-
-                    <?php include 'app/php/exibirEquipamentoDescarte.php'; ?>   
-
-
+            <form action="app/php/processar_descarte.php" method="POST"> 
+        
+                <div class="form-content wide-form">
+                    <div>
+                        <?php include 'app/php/exibirEquipamentoDescarte.php'; ?>   
+                    </div>
                 </div>
-                
-            </div>
 
-            <button class="btn btn-primary">Enviar solicitação</button>
+                <button type="submit" class="btn btn-primary ver-detalhes">Enviar solicitação</button>
+            </form>
+
 
         </div>
-
-
-        
-
         
     </main>
 

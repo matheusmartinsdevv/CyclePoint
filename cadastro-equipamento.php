@@ -39,6 +39,8 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                 <?php if ($role_logado == 'administrador'): ?>
                 <a href="gerenciar-enderecos.php" class="nav-item">Gerenciar endereços</a><?php endif; ?>
 
+                <button><img src="img/notificacao.png" alt=""></button>
+
                 <div class="user-info">
                     <span class="user-role"><?php echo $nome_logado_display; ?></span> 
                 </div>

@@ -302,6 +302,7 @@ a:hover {
     border: 1px solid var(--primary-color);
 }
 
+
 .error-message {
     background-color: #FFECEC !important;
     color: #E74C3C;

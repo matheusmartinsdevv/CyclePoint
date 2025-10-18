@@ -39,6 +39,8 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
                 <?php if ($role_logado == 'administrador'): ?>
                 <a href="gerenciar-enderecos.php" class="nav-item">Gerenciar endereços</a><?php endif; ?>
 
+                <button><img src="img/notificacao.png" alt=""></button>
+
                 <div class="user-info">
                     <span class="user-role"><?php echo $nome_logado_display; ?></span> 
                 </div>
@@ -55,13 +57,16 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
             <h3 class="second-title">Pesquisar Recicladoras</h3>
 
-            <input type="text">
-            <button>Pesquisar</button>
-            <span>Filtrar por:</span>
-            <button>Cidade</button>
-            <button>Estado</button>
-            <button>País</button>
+            <div>
+                <input type="text">
+                <button>Pesquisar</button>
+                <span>Filtrar por:</span>
+                <button>Cidade</button>
+                <button>Estado</button>
+                <button>País</button>
 
+            </div>
+            
             <div class="form-content wide-form">
 
 
@@ -69,6 +74,23 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
 
             </div>
+
+            <hr>
+            <h3 class="second-title">Solicitações de descarte</h3>
+
+            <div class="form-content wide-form">
+
+
+                <div class="">
+
+                    <button class="btn btn-primary">Ver detalhes</button>
+                
+                </div>
+                
+
+
+            </div>
+
 
 
         </div>

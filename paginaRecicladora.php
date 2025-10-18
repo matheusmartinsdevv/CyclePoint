@@ -28,6 +28,8 @@ $nome_logado_display = isset($_SESSION['nome_logado_display']) ? $_SESSION['nome
 
                 <a href="itens-que-coleto.php" class="nav-item">itens que coleto</a>
 
+                <button><img src="img/notificacao.png" alt=""></button>
+
                 <div class="user-info">
                     <span class="user-role"><?php echo $nome_logado_display; ?></span> 
                 </div>

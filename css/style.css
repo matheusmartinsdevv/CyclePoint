@@ -38,6 +38,11 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+.ver-detalhes {
+    float: right;
+    margin: 20px;
+}
+
 .btn-secondary {
     color: #333333;
 }
