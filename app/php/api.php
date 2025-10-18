@@ -4,10 +4,11 @@ $conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
 // EXIBE TODOS OS USUÁRIOS CADASTRADOS 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $query = mysqli_query($conn, "SELECT * FROM usuario;");
-
+    $query = mysqli_query($conn, "SELECT nome, cargo, id_empresa FROM usuario;");
+    
+    // ATENÇÃO: Evitei exibir a coluna 'senha' aqui, mesmo que fosse o hash, por segurança.
     while ($response = mysqli_fetch_assoc($query)) {
-        echo $response["nome"] . ", Senha: " . $response["senha"] .  "<br>";
+        echo $response["nome"] . ", Cargo: " . $response["cargo"] .  "<br>";
     };
 
 };
