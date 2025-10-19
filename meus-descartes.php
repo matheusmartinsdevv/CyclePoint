@@ -83,6 +83,8 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 
                 <div class="">
 
+                    <?php include 'app/php/exibirSolicitacoesDescarte.php'; ?>
+
                     <button class="btn btn-primary">Ver detalhes</button>
                 
                 </div>

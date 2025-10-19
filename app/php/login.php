@@ -50,7 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_recicladora->close();
 
             if ($recicladora_user_count == 0) {
-                echo "ERRO: Email ou senha incorretos.";  
+                $_SESSION['message'] = [
+                    'type' => 'error',
+                    'text' => '❌ Erro: Email ou senha incorretos. Tente novamente.'
+                ];
+                header("Location: ../../login.php");
+
             } else {
                 $stmt_data = $conn->prepare("SELECT id_recicladora,nome_fantasia FROM recicladora WHERE email = ? AND senha = ?;");
                 $stmt_data->bind_param("ss", $email, $senha_digitada);
