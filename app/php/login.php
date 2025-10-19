@@ -116,8 +116,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // INICIAR A SESSÃO DE LOGIN
         $_SESSION['logado'] = true; 
         $_SESSION['id_usuario'] = $usuario['id_usuario']; 
-        $_SESSION['id_empresa'] = $usuario['id_empresa']; 
-
+        $_SESSION['id_usuario_empresa'] = $usuario['id_empresa'];
+        
         $_SESSION['role'] = 'usuario_comum';
         $_SESSION['nome_logado_display'] = $usuario['nome'];
         

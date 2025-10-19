@@ -7,6 +7,10 @@ $nome_logado_display = isset($_SESSION['nome_logado_display']) ? $_SESSION['nome
 $role_logado = isset($_SESSION['role']) ? $_SESSION['role'] : 'deslogado';
 
 $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Comum';
+
+if (isset($_GET['id_recicladora'])) {
+    $_SESSION['id_recicladora'] = $_GET['id_recicladora'];
+}
 ?>
 
 <!DOCTYPE html>

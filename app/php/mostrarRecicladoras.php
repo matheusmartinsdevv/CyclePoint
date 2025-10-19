@@ -9,7 +9,7 @@ if (!$conn) {
 
 $stmt = $conn->prepare("
     SELECT 
-        r.razao_social, r.email, r.telefone, r.descricao,
+        r.id_recicladora, r.razao_social, r.email, r.telefone, r.descricao,
         e.numero, e.logradouro, e.bairro, e.cidade, e.estado, e.pais
     FROM 
         recicladora r
@@ -25,6 +25,7 @@ $result = $stmt->get_result();
 
 while ($dados = $result->fetch_assoc()) {
     
+    $id_recicladora = $dados['id_recicladora'];
     $razao_social = htmlspecialchars($dados['razao_social']);
     $email = htmlspecialchars($dados['email']);
     $telefone = htmlspecialchars($dados['telefone']);
@@ -44,7 +45,7 @@ while ($dados = $result->fetch_assoc()) {
     echo '<p>' . $telefone . '</p>';
     echo '<p>' . $email . '</p>';
 
-    echo '<a href="/CyclePoint/solicitar-descarte.php"><button type="submit" class="btn btn-primary btn-large">Solicitar descarte</button></a>';
+    echo '<a href="/CyclePoint/solicitar-descarte.php?id_recicladora=' . $id_recicladora . '"><button type="submit" class="btn btn-primary btn-large">Solicitar descarte</button></a>';
     echo '</div>';
     echo '<br><hr>';
 };
