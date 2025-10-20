@@ -46,6 +46,9 @@ while ($dados = $result->fetch_assoc()) {
     echo '<p>' . $email . '</p>';
 
     echo '<a href="/CyclePoint/solicitar-descarte.php?id_recicladora=' . $id_recicladora . '"><button type="submit" class="btn btn-primary btn-large">Solicitar descarte</button></a>';
+
+
+    
     echo '</div>';
     echo '<br><hr>';
 };

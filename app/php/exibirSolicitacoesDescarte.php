@@ -1,4 +1,3 @@
-<!-- NÃO FINALIZADO -->
 
 <?php
 
@@ -10,25 +9,25 @@ if (isset($_SESSION['id_empresa'])) {
         die("Erro: ID da empresa não encontrado na sessão."); 
     }
 
-$stmt = $conn->prepare("SELECT id_equipamento, nome_equipamento, fabricante, modelo, vida_util_meses FROM equipamento WHERE id_empresa = ? AND status_equipamento = ?");
+$stmt = $conn->prepare("SELECT * FROM solicitacao_descarte WHERE id_empresa = ?");
 $stmt->bind_param("i", $id_empresa);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
 
-    while ($dados_equipamento = $result->fetch_assoc()) {
-        $id_equipamento = $dados_equipamento['id_equipamento'];
-        $nome_equipamento = $dados_equipamento['nome_equipamento'];
-        $fabricante = $dados_equipamento['fabricante'];
-        $modelo = $dados_equipamento['modelo'];
-        $vida_util_meses = $dados_equipamento['vida_util_meses'];
+    while ($dados_solicitacao = $result->fetch_assoc()) {
+        $id_solicitacao_descarte = $dados_solicitacao['id_solicitacao_descarte'];
 
-        echo '<div class="equipamento">';
-        echo '<span class="equipamento">'. $nome_equipamento .'</span>';
+        // fazer join com outros IDs
+
+        $data_solicitacao = $dados_solicitacao['data_solicitacao'];
+        $status_solicitacao = $dados_solicitacao['status_solicitacao'];
+
+        echo '<div class="solicitacao-descarte">';
+        echo '<span class="solicitacao-descarte">COLOCAR NUMERO E INFO DA SOLICITACAO</span>';
         echo '<div style="display: flex ;align-items: center;">';
         echo '<button class="btn btn-primary">Ver detalhes</button>';
-        echo '<input type="checkbox" name="equipamentos[]" value="' . htmlspecialchars($id_equipamento) . '">';    
         echo '</div>';
         echo '</div>';
 
@@ -36,8 +35,7 @@ if ($result->num_rows > 0) {
 } else {
     // SE NÃO ENCONTROU DADOS
     echo '<div class="message-info" style="text-align: center;font-size: 13px;">';
-    echo '<h2>Nenhum equipamento encontrado para descarte</h2>';
-    echo '<p>Todos os seus equipamentos já foram descartados ou não há registros com o status compatível com descarte.</p>';
+    echo '<h2>Nenhuma solicitação de descarte registrada.</h2>';
     echo '</div>';
     
 }

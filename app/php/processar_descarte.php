@@ -2,28 +2,41 @@
 session_start();
 $conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
-if (isset($_SESSION['id_empresa'])) {
-        $id_empresa = $_SESSION['id_empresa'];
-    } else {
-        die("Erro: ID da empresa não encontrado na sessão."); 
-    }
+// --- CORREÇÃO DE LÓGICA DE SOLICITANTE ---
 
-if (!isset($_SESSION['id_recicladora'])) {
-        die("Erro: ID da recicladora não encontrado na sessão.");
-    }
-    $id_recicladora = $_SESSION['id_recicladora'];
+// Inicializa ambos como NULL para garantir que o que não for usado vá para o banco como NULL
+$solicitante_empresa_id = NULL;
+$solicitante_usuario_id = NULL;
 
+// 1. PRIORIDADE: USUÁRIO/FUNCIONÁRIO (Cenário onde ambos IDs devem ser preenchidos)
 if (isset($_SESSION['id_usuario'])) {
-        $id_usuario = $_SESSION['id_usuario'];
-    } else {
-        die("Erro: ID do usuario não encontrado na sessão."); 
-    }
+    $solicitante_usuario_id = $_SESSION['id_usuario'];
+    
+    // Se o usuário tem um ID de empresa na sessão (Cenário 2), preenche ambos.
+    if (isset($_SESSION['id_empresa'])) {
+        $solicitante_empresa_id = $_SESSION['id_empresa'];
+    } 
+    
+// 2. EMPRESA DIRETA (Só alcança aqui se NÃO houver id_usuario na sessão)
+} elseif (isset($_SESSION['id_empresa'])) {
+    // Cenário 1: Empresa Direta Solicitando.
+    $solicitante_empresa_id = $_SESSION['id_empresa'];
+    // $solicitante_usuario_id permanece NULL (Correto para a Empresa).
 
-// if (isset($_SESSION['id_usuario_empresa'])) {
-//         $id_empresa_usuario = $_SESSION['id_usuario_empresa'];
-//     } else {
-//         die("Erro: ID da empresa do usuario não encontrada na sessão."); 
-//     }
+// 3. Erro: Ninguém logado.
+} else {
+    die("Erro: Não foi possível identificar o solicitante (empresa ou usuário) na sessão.");
+}
+
+// --- FIM DA CORREÇÃO DE LÓGICA ---
+
+
+// O restante dos IDs obrigatórios, mantido como estava
+if (!isset($_SESSION['id_recicladora'])) {
+    die("Erro: ID da recicladora não encontrado na sessão.");
+}
+$id_recicladora = $_SESSION['id_recicladora'];
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -37,18 +50,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         foreach ($ids_equipamentos_selecionados as $id_equipamento) {
 
-            
-
             // Atualiza o status do equipamento e associa à recicladora
             $stmt = $conn->prepare("UPDATE equipamento SET status_equipamento = 'aguardando_descarte' WHERE id_equipamento = ?");
             $stmt->bind_param("i", $id_equipamento);
             
 
-            $stmt_solicitacao = $conn->prepare("INSERT INTO solicitacao_descarte (id_equipamento, id_usuario, id_recicladora, data_solicitacao, status_solicitacao) VALUES (?,?,?,?,?);");
+            // Prepara o INSERT
+            $stmt_solicitacao = $conn->prepare("INSERT INTO solicitacao_descarte (id_equipamento, id_usuario, id_empresa, id_recicladora, data_solicitacao, status_solicitacao) VALUES (?,?,?,?,?,?);");
 
-            $stmt_solicitacao->bind_param("iiiss", $id_equipamento, $id_usuario, $id_recicladora, $data_solicitacao, $status_solicitacao);
+            // O BIND USA AS VARIÁVEIS CORRIGIDAS
+            $stmt_solicitacao->bind_param("iiisss", 
+                $id_equipamento, 
+                $solicitante_usuario_id, // Se usuário logado, tem valor; se empresa direta, é NULL.
+                $solicitante_empresa_id, // Se usuário logado COM empresa, tem valor; se empresa direta, tem valor.
+                $id_recicladora, 
+                $data_solicitacao, 
+                $status_solicitacao
+            );
 
-
+            // ... (restante do código de execução e tratamento de erro)
             if ($stmt->execute() && $stmt_solicitacao->execute()) {
 
             $_SESSION['message'] = [
@@ -57,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             $stmt->close();
             
-             
+            
             } else {
                 $_SESSION['message'] = [
                     'type' => 'error',
@@ -66,8 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
             }
         }
-
-        
 
     }
 
