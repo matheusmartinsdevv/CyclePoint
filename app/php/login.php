@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 // INICIAR A SESSÃO DE LOGIN
                 $_SESSION['logado'] = true; 
-                $_SESSION['recicladora'] = $recicladora['id_recicladora']; 
+                $_SESSION['id_recicladora'] = $recicladora['id_recicladora']; 
                 $_SESSION['nome_logado_display'] = $recicladora['nome_fantasia'];
                 $_SESSION['role'] = 'recicladora';
 

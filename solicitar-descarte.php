@@ -11,6 +11,11 @@ $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Com
 if (isset($_GET['id_recicladora'])) {
     $_SESSION['id_recicladora'] = $_GET['id_recicladora'];
 }
+
+if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
+    header("refresh:0.5;url=/CyclePoint/login.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>

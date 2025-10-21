@@ -6,7 +6,10 @@ $nome_logado_display = isset($_SESSION['nome_logado_display']) ? $_SESSION['nome
 // $role_logado = isset($_SESSION['role']) ? $_SESSION['role'] : 'deslogado';
 
 // $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Comum';
-
+if (!isset($_SESSION['id_recicladora'])) {
+    header("refresh:0.5;url=/CyclePoint/login.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +27,11 @@ $nome_logado_display = isset($_SESSION['nome_logado_display']) ? $_SESSION['nome
         <div class="container">
             <img class="logo" src="img/logo.png" alt="CyclePoint Logo">
             <nav>
-                <a href="paginarRecicladora.php" class="nav-item active">Coletas</a>
+                <a href="paginaRecicladora.php" class="nav-item active">Coletas</a>
 
-                <a href="itens-que-coleto.php" class="nav-item">itens que coleto</a>
+                <a href="solicitacoesRecicladora.php" class="nav-item">Solicitações de Descarte</a>
+
+                <a href="itens-que-coleto.php" class="nav-item">Itens que coleto</a>
 
                 <button><img src="img/notificacao.png" alt=""></button>
 
