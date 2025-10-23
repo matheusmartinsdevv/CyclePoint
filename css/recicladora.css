@@ -1,0 +1,16 @@
+.aceitar-solicitacao {
+    background-color: rgb(19, 188, 148);
+    border: 0;
+    margin-right: 5px;
+}
+
+.recusar-solicitacao {
+    background-color: rgb(183, 24, 24);
+    border: 0;
+
+}
+
+.recusar-solicitacao:hover {
+    background-color: rgb(146, 7, 7);
+
+}

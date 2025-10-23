@@ -44,17 +44,24 @@ if ($result->num_rows > 0) {
         $data_solicitacao = date('d/m/Y', strtotime($dados_solicitacao['data_solicitacao']));
         $status_solicitacao = $dados_solicitacao['status_solicitacao'];
 
-        echo '<div class="solicitacao-descarte">';
-        echo '<span>ID '.$id_solicitacao_descarte.'</span>';
-        echo '<h3 class="solicitacao-descarte equipamento">Equipamento:'. $nome_equipamento  .'</h3>';
-        echo '<span>Modelo: '.$modelo.'</span>';
-        echo '<h4 class="solicitacao-descarte recicladora">Empresa solicitante:'. $nome_empresa  .'</h4>';
-        echo '<span>Data da solicitação: '.$data_solicitacao.' |</span>';
-        echo '<span> Status: '.$status_solicitacao.'</span>';
-        // echo '<div style="display: flex ;align-items: center;">';
-        // echo '<button class="btn btn-primary">Ver detalhes</button>';
-        // echo '</div>';
-        echo '</div><hr>';
+        if ($status_solicitacao === 'pendente') {
+
+            echo '<div class="solicitacao-descarte">';
+            echo '<span id="id_solicitacao_descarte">'.$id_solicitacao_descarte.'</span>';
+            echo '<h3 class="solicitacao-descarte equipamento">Equipamento:'. $nome_equipamento  .'</h3>';
+            echo '<span>Modelo: '.$modelo.'</span>';
+            echo '<h4 class="solicitacao-descarte recicladora">Empresa solicitante: '. $nome_empresa  .'</h4>';
+            echo '<span>Data da solicitação: '.$data_solicitacao.'</span>';
+            // echo '<div style="display: flex ;align-items: center;">';
+            // echo '<button class="btn btn-primary">Ver detalhes</button>';
+            // echo '</div>';
+            echo '<br><div class="botoes-solicitacao" style="display: flex; justify-content: flex-end;">';
+            echo '<button data-id="'.$id_solicitacao_descarte.'" data-acao="Aceito" class="btn btn-primary aceitar-solicitacao">Aceitar</button>';
+            echo '<button data-id="'.$id_solicitacao_descarte.'" data-acao="Recusado" class="btn btn-primary recusar-solicitacao">Recusar</button>';
+            echo '</div>';
+            echo '</div><hr>';
+
+        }
 
     };
 } else {
