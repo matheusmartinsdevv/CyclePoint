@@ -32,6 +32,8 @@ $stmt->bind_param("i", $id_recicladora);
 $stmt->execute();
 $result = $stmt->get_result();
 
+$count = 0;
+
 if ($result->num_rows > 0) {
 
     while ($dados_solicitacao = $result->fetch_assoc()) {
@@ -61,9 +63,19 @@ if ($result->num_rows > 0) {
             echo '</div>';
             echo '</div><hr>';
 
-        }
+            $count += 1;
+
+        };
+
+        
 
     };
+
+    if ($count === 0) {
+            echo '<h4 style="text-align: center">Nenhuma solicitação de descarte pendente.</h4>';
+
+        };
+
 } else {
     // SE NÃO ENCONTROU DADOS
     echo '<div class="message-info" style="text-align: center;font-size: 13px;">';

@@ -83,46 +83,61 @@ if (!isset($_SESSION['id_recicladora'])) {
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Seleciona todos os botões com a classe 'aceitar-solicitacao' ou 'recusar-solicitacao'
             const botoesAcao = document.querySelectorAll('.aceitar-solicitacao, .recusar-solicitacao');
+            const url = 'app/php/processar_retorno_solicitacao.php'; 
 
             botoesAcao.forEach(botao => {
                 botao.addEventListener('click', function() {
-                    // 1. Obtém o ID da solicitação e a ação (Aceito ou Recusado) dos atributos data-
                     const idSolicitacao = this.getAttribute('data-id');
                     const acao = this.getAttribute('data-acao'); // 'Aceito' ou 'Recusado'
-                    
-                    if (!confirm(`Tem certeza que deseja ${acao === 'Aceito' ? 'ACEITAR' : 'RECUSAR'} a solicitação ID ${idSolicitacao}?`)) {
-                        return; // Cancela se o usuário clicar em "Não"
+                    const linhaTabela = this.closest('tr'); // Assumindo que o botão está em uma <tr>
+
+                    // 1. Prepara a visualização imediata
+                    if (linhaTabela) {
+                        // Opcional: Desabilita temporariamente os botões e indica que está processando
+                        this.disabled = true;
+                        linhaTabela.style.opacity = '0.6';
+                        linhaTabela.title = 'Processando...';
                     }
+                    
+                    // Não há confirm() aqui, a ação é imediata
 
-                    // 2. Define o script PHP que irá processar a requisição
-                    const url = 'app/php/processar_retorno_solicitacao.php'; // Crie este novo arquivo no passo 3
-
-                    // Dados a serem enviados via POST
                     const dados = new FormData();
                     dados.append('id_solicitacao_descarte', idSolicitacao);
-                    dados.append('acao', acao); // Envia 'Aceito' ou 'Recusado'
+                    dados.append('acao', acao); 
 
-                    // 3. Usa Fetch API para enviar a requisição
                     fetch(url, {
                         method: 'POST',
                         body: dados
                     })
-                    .then(response => response.json()) // Espera uma resposta JSON do PHP
+                    .then(response => response.json()) 
                     .then(data => {
                         console.log('Resposta do Servidor:', data);
+                        
+                        // 2. Não usa alert(), mas checa o resultado
                         if (data.success) {
-                            alert(`Solicitação ${idSolicitacao} foi ${acao} com sucesso!`);
-                            // 4. Recarrega a página para atualizar a lista
+                            // Sucesso: Recarrega a página imediatamente para atualizar a lista.
                             window.location.reload(); 
                         } else {
-                            alert(`Erro ao processar a solicitação ${idSolicitacao}: ${data.message}`);
+                            // Erro: Se não foi sucesso, mostra um erro no console e/ou tenta reabilitar
+                            console.error(`Erro ao processar a solicitação ${idSolicitacao}: ${data.message}`);
+                            
+                            // Reverte a visualização em caso de erro
+                            if (linhaTabela) {
+                                this.disabled = false;
+                                linhaTabela.style.opacity = '1';
+                                linhaTabela.title = `Erro: ${data.message}`;
+                            }
                         }
                     })
                     .catch(error => {
-                        console.error('Erro na requisição:', error);
-                        alert('Erro de comunicação com o servidor.');
+                        // Erro de comunicação (rede)
+                        console.error('Erro de comunicação com o servidor:', error);
+                        if (linhaTabela) {
+                            this.disabled = false;
+                            linhaTabela.style.opacity = '1';
+                            linhaTabela.title = 'Erro de Rede.';
+                        }
                     });
                 });
             });
