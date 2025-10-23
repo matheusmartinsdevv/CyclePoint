@@ -45,6 +45,20 @@ if (!isset($_SESSION['id_recicladora'])) {
         </div>
     </header>
 
+    <?php
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        $class = ($message['type'] === 'success') ? 'success-message-categoria' : 'error-message-categoria';
+        
+        echo '<div class="' . $class . '" style="background-color:#cdffed; padding: 5px;">'; 
+        echo htmlspecialchars($message['text']);
+        echo '</div>';
+        
+        
+        unset($_SESSION['message']);
+    }
+    ?>
+
     <main>
         <div class="container page-container">
             <h1 class="page-title">Visão das solicitações de descarte</h1>
@@ -60,6 +74,23 @@ if (!isset($_SESSION['id_recicladora'])) {
                 <div class="">
 
                     <?php include 'app/php/exibirSolicitacoesDescarteRecicladora.php'; ?>
+
+                
+                
+                </div>
+                
+
+
+            </div>
+
+            <h3 class="second-title" style="margin-top:20px;">Definir datas das coletas</h3>
+
+            <div class="form-content wide-form">
+
+
+                <div class="">
+
+                    <?php include 'app/php/exibirSolicitacoesData.php'; ?>
 
                 
                 

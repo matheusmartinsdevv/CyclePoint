@@ -45,8 +45,33 @@ if (!isset($_SESSION['id_recicladora'])) {
     </header>
 
     <main>
+
         <div class="container page-container">
-            <h1 class="page-title">Visão Geral das Coletas</h1>
+            <h1 class="page-title">Histórico das Coletas</h1>
+            <p class="form-description"></p>
+
+
+
+            <h3 class="second-title">Consultar histórico</h3>
+
+            <div class="form-content wide-form">
+
+
+                <div class="">
+
+                    <!--  PHP -->
+
+                
+                
+                </div>
+                
+
+
+            </div>
+
+
+
+        </div>
             
     </main>
     
