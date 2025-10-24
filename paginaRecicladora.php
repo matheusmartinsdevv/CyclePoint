@@ -52,6 +52,23 @@ if (!isset($_SESSION['id_recicladora'])) {
 
 
 
+            <h3 class="second-title">Próximas coletas</h3>
+
+            <div class="form-content wide-form">
+
+
+                <div class="">
+
+                    <?php include 'app/php/exibirProximasColetas.php'; ?>
+
+                
+                
+                </div>
+                
+
+
+            </div><br>
+
             <h3 class="second-title">Consultar histórico</h3>
 
             <div class="form-content wide-form">
@@ -59,7 +76,7 @@ if (!isset($_SESSION['id_recicladora'])) {
 
                 <div class="">
 
-                    <!--  PHP -->
+                    <?php include 'app/php/exibirHistoricoColetas.php'; ?>
 
                 
                 

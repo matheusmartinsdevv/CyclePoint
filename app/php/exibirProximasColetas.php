@@ -44,30 +44,25 @@ if ($result->num_rows > 0) {
         $modelo = $dados_solicitacao['modelo'];
         $nome_empresa = $dados_solicitacao['nome_empresa'];
 
-        $data_solicitacao = date('d/m/Y', strtotime($dados_solicitacao['data_solicitacao']));
+        $data_solicitacao_display = date('d/m/Y', strtotime($dados_solicitacao['data_solicitacao']));
         $status_solicitacao = $dados_solicitacao['status_solicitacao'];
-        $data_coleta = date('d/m/Y', strtotime($dados_solicitacao['data_coleta']));
+
+        $data_coleta_comparacao = $dados_solicitacao['data_coleta']; 
+    
+        $data_coleta_display = date('d/m/Y', strtotime($dados_solicitacao['data_coleta']));
+
+        $data_atual_comparacao = date('Y-m-d');
 
 
-        if ($status_solicitacao === 'Aceito' && $data_coleta === null) {
+        if ($status_solicitacao === 'Aceito' && $data_coleta_comparacao >= $data_atual_comparacao) {
 
             echo '<div class="solicitacao-descarte">';
             echo '<span id="id_solicitacao_descarte">'.$id_solicitacao_descarte.'</span>';
             echo '<h3 class="solicitacao-descarte equipamento">Equipamento:'. $nome_equipamento  .'</h3>';
             echo '<span>Modelo: '.$modelo.'</span>';
             echo '<h4 class="solicitacao-descarte recicladora">Empresa solicitante: '. $nome_empresa  .'</h4>';
-            echo '<span>Data da solicitação: '.$data_solicitacao.'</span><br>';
-            echo '<form action="app/php/processar_data.php" method="POST" class="form-content wide-form dataColeta">';
-            echo '<div class="input-group">
-                        <input type="hidden" name="id_solicitacao_descarte" value="' . htmlspecialchars($id_solicitacao_descarte) . '">                
-                        <label for="dataColeta">Data da Coleta</label>
-                        <div style="display:flex;">
-                            <input type="date" id="dataColeta" name="dataColeta" required>
-                            <button type="submit" class="btn btn-primary">Agendar coleta</button>
-                        </div>
-
-                    </div>';
-            echo '</form>';
+            echo '<span>Data da solicitação: '.$data_solicitacao_display.'</span><br>';
+            echo '<span>Data prevista da coleta: '.$data_coleta_display.'</span><br>';
             echo '</div><hr>';
 
             $count += 1;
@@ -79,14 +74,14 @@ if ($result->num_rows > 0) {
     };
 
     if ($count === 0) {
-            echo '<h4 style="text-align: center">Nenhum agendamento pendente.</h4>';
+            echo '<h4 style="text-align: center">Nenhuma coleta agendada.</h4>';
 
         };
 
 } else {
     // SE NÃO ENCONTROU DADOS
     echo '<div class="message-info" style="text-align: center;font-size: 13px;">';
-    echo '<h2>Nenhuma solicitação de descarte registrada.</h2>';
+    echo '<h2>Nenhuma coleta agendada.</h2>';
     echo '</div>';
     
 }
