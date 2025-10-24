@@ -133,7 +133,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
             
             <div class="card action-card">
                 <h3 class="card-title">Novo Cadastro</h3>
-                <p>Registre um novo equipamento de TI ou gere um relatório.</p>
+                <p>Registre um novo equipamento de TI.</p>
                 <a href="cadastro-equipamento.php" class="btn btn-primary btn-small">Cadastrar Novo Ativo</a>
             </div>
         </div>

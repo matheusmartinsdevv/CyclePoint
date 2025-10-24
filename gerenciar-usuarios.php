@@ -53,11 +53,54 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
         </div>
     </header>
 
+    <?php
+
+    // Verifica se há uma mensagem de feedback
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        $class = ($message['type'] === 'success') ? 'success-message-categoria' : 'error-message-categoria';
+        
+        echo '<div class="' . $class . '" style="background-color:#cdffed; padding: 5px;">'; 
+        echo htmlspecialchars($message['text']);
+        echo '</div>';
+        
+        
+        unset($_SESSION['message']);
+    }
+    ?>
+
     <main>
         <div class="container page-container">
             <h1 class="page-title">Gerenciamento de Usuários</h1>
             <p class="form-description">Adicione, edite ou remova usuários com acesso ao sistema CyclePoint da sua empresa.</p>
+
+
+            <div class="auth-container large-container">
+            <h2 class="title-primary">Novo Cadastro</h2> 
+
+            <!-- CADASTRO DE USUÁRIO -->
+            <form id="form-usuario" action="./app/php/cadastroUsuario2.php" method="POST" class="registration-form active">
+                <h3>Dados do Usuário</h3>
+
+                <div class="form-grid">
+                    <div class="input-group"><label>Nome*</label><input type="text" name="nome" required></div>
+                    <div class="input-group"><label>Cargo</label><input type="text" name="cargo" required></div>
+                    <div class="input-group"><label>E-mail*</label><input type="email" name="email" required></div>
+                    <div class="input-group"><label>Defina sua Senha*</label><input type="password" name="senha" required>
+                    </div>
+                </div>
+                <hr>
+
+
+                <button type="submit" class="btn btn-primary btn-large">Cadastrar Usuário</button>
+            </form>
+
+
+            
         </div>
+        </div>
+
+            
     </main>
 
     <footer class="footer">

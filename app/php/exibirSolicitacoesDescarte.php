@@ -13,7 +13,8 @@ $stmt = $conn->prepare("
     SELECT 
         s.id_solicitacao_descarte, 
         s.data_solicitacao, 
-        s.status_solicitacao, 
+        s.status_solicitacao,
+        s.data_coleta, 
         e.nome_equipamento, 
         e.modelo, 
         r.razao_social AS nome_recicladora
@@ -44,6 +45,14 @@ if ($result->num_rows > 0) {
 
         $data_solicitacao = date('d/m/Y', strtotime($dados_solicitacao['data_solicitacao']));
         $status_solicitacao = $dados_solicitacao['status_solicitacao'];
+        $raw_data_coleta = $dados_solicitacao['data_coleta'];
+
+        if (empty($raw_data_coleta)) {
+            $data_coleta_display = 'Data da coleta ainda não definida';
+        } else {
+            $data_coleta_display = 'Data da coleta: '.date('d/m/Y', strtotime($raw_data_coleta)).'';
+        }
+
 
         echo '<div class="solicitacao-descarte">';
         echo '<span>ID '.$id_solicitacao_descarte.'</span>';
@@ -51,10 +60,8 @@ if ($result->num_rows > 0) {
         echo '<span>Modelo: '.$modelo.'</span>';
         echo '<h4 class="solicitacao-descarte recicladora">Recicladora:'. $nome_recicladora  .'</h4>';
         echo '<span>Data da solicitação: '.$data_solicitacao.' |</span>';
-        echo '<span> Status: '.$status_solicitacao.'</span>';
-        // echo '<div style="display: flex ;align-items: center;">';
-        // echo '<button class="btn btn-primary">Ver detalhes</button>';
-        // echo '</div>';
+        echo '<span> Status: '.$status_solicitacao.'</span><br>';
+        echo '<span>'.$data_coleta_display.'</span>';
         echo '</div><hr>';
 
     };
