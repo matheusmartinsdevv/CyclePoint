@@ -46,14 +46,28 @@ if ($result->num_rows > 0) {
 
         $data_solicitacao = date('d/m/Y', strtotime($dados_solicitacao['data_solicitacao']));
         $status_solicitacao = $dados_solicitacao['status_solicitacao'];
-        $data_coleta = date('d/m/Y', strtotime($dados_solicitacao['data_coleta']));
+
+        // 1. Pega a data bruta do banco (pode ser NULL)
+        $raw_data_coleta = $dados_solicitacao['data_coleta'];
+
+        // 2. Tenta formatar a data APENAS SE ELA NÃO FOR NULA/VAZIA.
+        if (!empty($raw_data_coleta)) {
+            $data_coleta_display = date('d/m/Y', strtotime($raw_data_coleta));
+        } else {
+            // 3. Caso seja NULL, define a mensagem desejada.
+            $data_coleta_display = null;
+        }
+
+        // $data_coleta = date('d/m/Y', strtotime($dados_solicitacao['data_coleta']));
+
+        // && $data_coleta_ === null
 
 
-        if ($status_solicitacao === 'Aceito' && $data_coleta === null) {
+        if ($status_solicitacao === 'Aceito' && $data_coleta_display === null) {
 
             echo '<div class="solicitacao-descarte">';
             echo '<span id="id_solicitacao_descarte">'.$id_solicitacao_descarte.'</span>';
-            echo '<h3 class="solicitacao-descarte equipamento">Equipamento:'. $nome_equipamento  .'</h3>';
+            echo '<h3 class="solicitacao-descarte equipamento">Equipamento: '. $nome_equipamento  .'</h3>';
             echo '<span>Modelo: '.$modelo.'</span>';
             echo '<h4 class="solicitacao-descarte recicladora">Empresa solicitante: '. $nome_empresa  .'</h4>';
             echo '<span>Data da solicitação: '.$data_solicitacao.'</span><br>';

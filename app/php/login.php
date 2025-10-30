@@ -73,6 +73,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['role'] = 'recicladora';
 
 
+                // Garantir que não existam ids de outras entidades na sessão
+                unset($_SESSION['id_empresa']);
+                unset($_SESSION['id_usuario']);
+
+
                 $stmt_data->close();
 
                 // REDIRECIONAR A RECICLADORA
@@ -95,6 +100,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['id_empresa'] = $empresa['id_empresa']; 
             $_SESSION['nome_logado_display'] = $empresa['nome_fantasia'];
             $_SESSION['role'] = 'administrador';
+
+
+            // Garantir que não existam ids de outras entidades na sessão
+            unset($_SESSION['id_recicladora']);
+            unset($_SESSION['id_usuario']);
 
 
             $stmt_data->close();
@@ -123,6 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['nome_logado_display'] = $usuario['nome'];
 
         $stmt_data->close();
+
+    // Garantir que não existam ids de outras entidades na sessão
+    unset($_SESSION['id_recicladora']);
 
         // REDIRECIONAR O USUÁRIO
         header("Location: ../../dashboard.php");   

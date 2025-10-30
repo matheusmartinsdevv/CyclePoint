@@ -1,0 +1,106 @@
+.notificacao-container {
+    position: relative; 
+    display: inline-block;
+    margin-left: 10px; /* Ajuste o espaçamento */
+}
+.notificacao-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #e74c3c; /* Vermelho */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 10px;
+    line-height: 1;
+    min-width: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+.notificacao-badge.hidden, .notificacao-dropdown.hidden {
+    display: none;
+}
+.notificacao-dropdown {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.dropdown-body {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px; 
+    overflow-y: auto;
+}
+.dropdown-body li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+.dropdown-body li:hover {
+    background-color: #f5f5f5;
+}
+.notificacao-nao-lida {
+    background-color: #f6f9fc; /* Fundo leve para destaque */
+    font-weight: bold;
+}
+.dropdown-header, .dropdown-footer {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+.dropdown-footer {
+    justify-content: center;
+    border-top: 1px solid #eee;
+}
+.dropdown-footer a {
+    text-decoration: none;
+    color: #3498DB;
+}
+.marcar-lidas-link {
+    font-size: 12px;
+    color: #7f8c8d;
+    text-decoration: none;
+}
+
+#btnNotificacao {
+    background: none; 
+    background-color: transparent;
+    border: none;
+    padding: 0; 
+    cursor: pointer;
+    color: inherit; 
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    line-height: 0; 
+}
+
+
+#btnNotificacao:focus,
+#btnNotificacao:active {
+    outline: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#btnNotificacao img {
+    display: block; 
+    width: 24px; 
+    height: 24px;
+}
+
+#btnNotificacao:hover {
+    opacity: 0.8; 
+}

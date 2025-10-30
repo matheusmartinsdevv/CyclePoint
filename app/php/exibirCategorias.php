@@ -13,15 +13,22 @@ $stmt->bind_param("i", $id_empresa);
 $stmt->execute();
 $result = $stmt->get_result();
 
-while ($dados_categoria = $result->fetch_assoc()) {
-    $nome_categoria = $dados_categoria['nome_categoria'];
-    $descricao_categoria = $dados_categoria['descricao'];
+if ($result->num_rows > 0) {
+    while ($dados_categoria = $result->fetch_assoc()) {
+        $nome_categoria = $dados_categoria['nome_categoria'];
+        $descricao_categoria = $dados_categoria['descricao'];
 
-    echo '<div class="exibe_categoria" style="display: flex;justify-content: space-between">';
-    echo '  <span style="padding: 0px 15px;">' . $nome_categoria . '</span>';
-    echo '  <span style="padding: 0px 15px;">' . $descricao_categoria . '</span>';
+        echo '<div class="exibe_categoria" style="display: flex;justify-content: space-between">';
+        echo '  <span style="padding: 0px 15px;">' . $nome_categoria . '</span>';
+        echo '  <span style="padding: 0px 15px;">' . $descricao_categoria . '</span>';
+        echo '</div>';
+    };
+} else {
+    // SE NÃO ENCONTROU DADOS
+    echo '<div class="message-info" style="text-align: center;font-size: 13px;">';
+    echo '<h2>Nenhum equipamento registrado.</h2>';
     echo '</div>';
-};
+}
 
 $stmt->close();
 $conn->close();

@@ -2,37 +2,27 @@
 session_start();
 // $id_logado = $_SESSION['id_usuario'];
 
+if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
+    header("refresh:0.5;url=/CyclePoint/login.php");
+    exit;
+}
+
 $nome_logado_display = isset($_SESSION['nome_logado_display']) ? $_SESSION['nome_logado_display'] : 'Visitante';
 $role_logado = isset($_SESSION['role']) ? $_SESSION['role'] : 'deslogado';
 
 $role_text = ($role_logado == 'administrador') ? 'Administrador' : 'Usuário Comum';
 
+include 'app/php/dados_dashboard.php';
 
-$dashboard_data = [
-    'total_equipamentos' => 55,
-    'equipamentos_ativos' => 40,
-    'solicitacoes_pendentes' => 3,
-    'coletas_futuras' => 2,
-    'proxima_coleta_display' => '20/11/2025',
-    'grafico_categorias' => [
-        ['nome_categoria' => 'Desktops', 'total' => 30],
-        ['nome_categoria' => 'Notebooks', 'total' => 15],
-        ['nome_categoria' => 'Monitores', 'total' => 8],
-        ['nome_categoria' => 'Impressoras', 'total' => 2],
-    ]
-];
-if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
-    header("refresh:0.5;url=/CyclePoint/login.php");
-    exit;
-}
-include 'app/php/get_dashboard_data.php';
 
 $chart_labels = [];
 $chart_data = [];
-// Percorrer o array de dados do gráfico
-foreach ($dashboard_data['grafico_categorias'] as $item) {
-    $chart_labels[] = $item['nome_categoria'];
-    $chart_data[] = $item['total'];
+
+if (isset($dashboard_data['grafico_categorias']) && is_array($dashboard_data['grafico_categorias'])) {
+    foreach ($dashboard_data['grafico_categorias'] as $item) {
+        $chart_labels[] = $item['nome_categoria'];
+        $chart_data[] = $item['total'];
+    }
 }
 
 // Converter para JSON para injetar no JavaScript
@@ -48,6 +38,7 @@ $js_data = json_encode($chart_data);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/notificacao.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -73,7 +64,22 @@ $js_data = json_encode($chart_data);
                 <?php if ($role_logado == 'administrador'): ?>
                     <a href="gerenciar-enderecos.php" class="nav-item">Gerenciar endereços</a><?php endif; ?>
 
-                <button><img src="img/notificacao.png" alt=""></button>
+                <div class="notificacao-container">
+                    <button id="btnNotificacao" class="nav-item notificacao-toggle">
+                        <img src="img/notificacao.png" alt="Notificações">
+                        <span id="notificacaoBadge" class="notificacao-badge hidden">0</span>
+                    </button>
+                    
+                    <div id="notificacaoDropdown" class="notificacao-dropdown hidden">
+                        <div class="dropdown-header">
+                            <h4>Notificações</h4>
+                            <a href="#" id="marcarTodasLidas" class="marcar-lidas-link">Marcar todas como lidas</a>
+                        </div>
+                        <ul id="notificacaoLista" class="dropdown-body">
+                            <li style="text-align: center; color: #7f8c8d;">Buscando notificações...</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="user-info">
                     <span class="user-role"><?php echo $nome_logado_display; ?></span>
@@ -100,14 +106,6 @@ $js_data = json_encode($chart_data);
                         </div>
                     </div>
 
-                    <div class="data-card bg-success-light">
-                        <div class="card-icon"><i class="fas fa-desktop"></i></div>
-                        <div class="card-content">
-                            <p class="card-metric-value">
-                                <?php echo number_format($dashboard_data['equipamentos_ativos'], 0, ',', '.'); ?></p>
-                            <p class="card-metric-label">Equipamentos Ativos</p>
-                        </div>
-                    </div>
 
                     <div class="data-card bg-warning-light">
                         <div class="card-icon"><i class="fas fa-clock"></i></div>
@@ -165,8 +163,12 @@ $js_data = json_encode($chart_data);
             <p>&copy; 2025 CyclePoint. Gerenciamento de Ativos de TI.</p>
         </div>
     </footer>
+
     <!-- JavaScript para o Gráfico Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Notificações -->
+    <script src="js/notificacao.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

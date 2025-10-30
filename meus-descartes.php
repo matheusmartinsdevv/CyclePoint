@@ -21,6 +21,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Descartes - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/notificacao.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -44,7 +45,23 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
                 <?php if ($role_logado == 'administrador'): ?>
                 <a href="gerenciar-enderecos.php" class="nav-item">Gerenciar endereços</a><?php endif; ?>
 
-                <button><img src="img/notificacao.png" alt=""></button>
+                <div class="notificacao-container">
+                    <button id="btnNotificacao" class="nav-item notificacao-toggle">
+                        <img src="img/notificacao.png" alt="Notificações">
+                        <span id="notificacaoBadge" class="notificacao-badge hidden">0</span>
+                    </button>
+                    
+                    <div id="notificacaoDropdown" class="notificacao-dropdown hidden">
+                        <div class="dropdown-header">
+                            <h4>Notificações</h4>
+                            <a href="#" id="marcarTodasLidas" class="marcar-lidas-link">Marcar todas como lidas</a>
+                        </div>
+                        <ul id="notificacaoLista" class="dropdown-body">
+                            <li style="text-align: center; color: #7f8c8d;">Buscando notificações...</li>
+                        </ul>
+                    </div>
+                </div>
+
 
                 <div class="user-info">
                     <span class="user-role"><?php echo $nome_logado_display; ?></span> 
@@ -62,7 +79,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
 
             <h3 class="second-title">Pesquisar Recicladoras</h3>
 
-            <div>
+            <!-- <div>
                 <input type="text">
                 <button>Pesquisar</button>
                 <span>Filtrar por:</span>
@@ -70,7 +87,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
                 <button>Estado</button>
                 <button>País</button>
 
-            </div>
+            </div> -->
             
             <div class="form-content wide-form">
 
@@ -107,6 +124,10 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
             <p>&copy; 2025 CyclePoint. Gerenciamento de Ativos de TI.</p>
         </div>
     </footer>
+
+    <!-- Notificações -->
+    <script src="js/notificacao.js"></script>
+
 
 </body>
 </html>

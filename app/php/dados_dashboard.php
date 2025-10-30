@@ -24,19 +24,19 @@ $dashboard_data['total_equipamentos'] = $result1->fetch_assoc()['total'];
 $stmt1->close();
      
 
-$stmt2 = $conn->prepare("SELECT COUNT(*) AS total FROM equipamento WHERE id_empresa = ? AND status_equipamento IS NULL");
-$stmt2->bind_param("i", $id_empresa);
-$stmt2->execute();
-$result2 = $stmt2->get_result();
-$dashboard_data['equipamentos_ativos'] = $result2->fetch_assoc()['total'];
-$stmt2->close();
+// $stmt2 = $conn->prepare("SELECT COUNT(*) AS total FROM equipamento WHERE id_empresa = ? AND status_equipamento IS NULL");
+// $stmt2->bind_param("i", $id_empresa);
+// $stmt2->execute();
+// $result2 = $stmt2->get_result();
+// $dashboard_data['equipamentos_ativos'] = $result2->fetch_assoc()['total'];
+// $stmt2->close();
 
 
 $stmt3 = $conn->prepare("
     SELECT COUNT(DISTINCT s.id_solicitacao_descarte) AS total
     FROM solicitacao_descarte s
     INNER JOIN equipamento e ON s.id_equipamento = e.id_equipamento
-    WHERE e.id_empresa = ? AND s.status_solicitacao IS NULL
+    WHERE e.id_empresa = ? AND s.status_solicitacao = 'pendente'
 ");
 $stmt3->bind_param("i", $id_empresa);
 $stmt3->execute();

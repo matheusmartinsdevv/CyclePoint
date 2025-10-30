@@ -19,6 +19,7 @@ if (!isset($_SESSION['id_recicladora'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/notificacao.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -34,7 +35,22 @@ if (!isset($_SESSION['id_recicladora'])) {
 
                 <a href="itens-que-coleto.php" class="nav-item active">Itens que coleto</a>
 
-                <button><img src="img/notificacao.png" alt=""></button>
+                <div class="notificacao-container">
+                    <button id="btnNotificacao" class="nav-item notificacao-toggle">
+                        <img src="img/notificacao.png" alt="Notificações">
+                        <span id="notificacaoBadge" class="notificacao-badge hidden">0</span>
+                    </button>
+                    
+                    <div id="notificacaoDropdown" class="notificacao-dropdown hidden">
+                        <div class="dropdown-header">
+                            <h4>Notificações</h4>
+                            <a href="#" id="marcarTodasLidas" class="marcar-lidas-link">Marcar todas como lidas</a>
+                        </div>
+                        <ul id="notificacaoLista" class="dropdown-body">
+                            <li style="text-align: center; color: #7f8c8d;">Buscando notificações...</li>
+                        </ul>
+                    </div>
+                </div>
 
 
                 <div class="user-info">
@@ -78,6 +94,9 @@ if (!isset($_SESSION['id_recicladora'])) {
             <p>&copy; 2025 CyclePoint. Gerenciamento de Ativos de TI.</p>
         </div>
     </footer>
+
+    <!-- Notificações -->
+    <script src="js/notificacao.js"></script>
 
 </body>
 </html>
