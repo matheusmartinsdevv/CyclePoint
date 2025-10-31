@@ -128,6 +128,45 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
     <!-- Notificações -->
     <script src="js/notificacao.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botoesCancelar = document.querySelectorAll('.cancelar-solicitacao');
+            const url = 'app/php/cancelar_solicitacao.php';
+
+            botoesCancelar.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    const idSolicitacao = this.getAttribute('data-id');
+                    const btn = this;
+                    btn.disabled = true;
+                    btn.textContent = 'Cancelando...';
+
+                    const dados = new FormData();
+                    dados.append('id_solicitacao_descarte', idSolicitacao);
+
+                    fetch(url, { method: 'POST', body: dados })
+                        .then(r => r.json())
+                        .then(data => {
+                            if (data.success) {
+                                // recarrega a página para refletir o novo estado
+                                window.location.reload();
+                            } else {
+                                console.error('Erro:', data.message);
+                                btn.disabled = false;
+                                btn.textContent = 'Cancelar solicitação';
+                                alert('Erro ao cancelar: ' + data.message);
+                            }
+                        })
+                        .catch(err => {
+                            console.error('Erro de rede:', err);
+                            btn.disabled = false;
+                            btn.textContent = 'Cancelar solicitação';
+                            alert('Erro de rede ao tentar cancelar.');
+                        });
+                });
+            });
+        });
+    </script>
+
 
 </body>
 </html>

@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
         }
 
 
-        echo '<div class="solicitacao-descarte">';
+    echo '<div class="solicitacao-descarte">';
         echo '<span>ID '.$id_solicitacao_descarte.'</span>';
         echo '<h3 class="solicitacao-descarte equipamento">Equipamento:'. $nome_equipamento  .'</h3>';
         echo '<span>Modelo: '.$modelo.'</span>';
@@ -62,6 +62,14 @@ if ($result->num_rows > 0) {
         echo '<span>Data da solicitação: '.$data_solicitacao.' |</span>';
         echo '<span> Status: '.$status_solicitacao.'</span><br>';
         echo '<span>'.$data_coleta_display.'</span>';
+
+        // Se a solicitação estiver pendente, permita que a empresa/usuário cancele
+        if ($status_solicitacao === 'pendente') {
+            echo '<div style="display:flex; justify-content:flex-end; margin-top:8px;">';
+            echo '<button data-id="'.$id_solicitacao_descarte.'" class="btn btn-secondary cancelar-solicitacao">Cancelar solicitação</button>';
+            echo '</div>';
+        }
+
         echo '</div><hr>';
 
     };

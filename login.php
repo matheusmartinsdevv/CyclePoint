@@ -50,9 +50,9 @@
         </div>
         
         <div class="login-action-box">
-            <a href="#" class="forgot-link small-link">Esqueceu a senha?</a>
             <button type="submit" class="btn btn-primary btn-full-width">Entrar</button>
         </div>
+
         
     </form>
 

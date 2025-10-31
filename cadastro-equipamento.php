@@ -93,7 +93,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
             <h1 class="page-title">Gestão de Equipamentos</h1>
             <hr>
 
-            <h3 class="second-title">Registrar Equipamentos</h3>
+            <h3 class="second-title">Registrar Equipamento</h3>
             <form action="app/php/cadastroEquipamento.php" method="POST" class="form-content wide-form">
                 <p class="form-description">Preencha todos os campos obrigatórios para registrar o novo ativo no sistema.</p>
 
@@ -164,7 +164,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
         </div>
 
         <div class="container page-container">
-            <h3 class="second-title">Exibir Equipamentos</h3>
+            <h3 class="second-title">Exibir Equipamentos ativos</h3>
 
 
             <div class="form-content wide-form">

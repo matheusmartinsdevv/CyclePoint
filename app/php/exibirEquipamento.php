@@ -8,7 +8,7 @@ if (isset($_SESSION['id_empresa'])) {
         die("Erro: ID da empresa não encontrado na sessão."); 
     }
 
-$stmt = $conn->prepare("SELECT nome_equipamento, fabricante, modelo, vida_util_meses FROM equipamento WHERE id_empresa = ?");
+$stmt = $conn->prepare("SELECT nome_equipamento, fabricante, modelo, vida_util_meses FROM equipamento WHERE id_empresa = ? AND status_equipamento IS NULL");
 $stmt->bind_param("i", $id_empresa);
 $stmt->execute();
 $result = $stmt->get_result();

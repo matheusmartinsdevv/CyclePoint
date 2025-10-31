@@ -143,18 +143,28 @@ $js_data = json_encode($chart_data);
                     </h2>
 
                     <div class="content-section">
-                        <h3 class="second-title">Distribuição de Equipamentos por Categoria</h3>
+                        <!-- <h3 class="second-title">Distribuição de Equipamentos por Categoria</h3> -->
                         <canvas id="inventoryChart" style="max-height: 400px;"></canvas>
                     </div>
                 </div>
 
-                <h2 class="section-title">Ações do Sistema</h2>
+                <h2 class="second-title">Ações do Sistema</h2>
 
-                <div class="card action-card">
+                <div style="display: flex;flex-direction: row;width: 100%;">
+                    <div class="card action-card" style="width:50%;">
                     <h3 class="card-title">Novo Cadastro</h3>
-                    <p>Registre um novo equipamento de TI.</p>
+                    <p>Registre um novo equipamento</p> <br>
                     <a href="cadastro-equipamento.php" class="btn btn-primary btn-small">Cadastrar Novo Ativo</a>
+                    </div>
+
+                    <div class="card action-card" style="width:50%;">
+                        <h3 class="card-title">Solicitação de descarte</h3>
+                        <p>Faça a solicitação de descarte de equipamentos para uma recicladora parceira</p> <br>
+                        <a href="meus-descartes.php" class="btn btn-primary btn-small">Solicitar descarte</a>
+                    </div>
                 </div>
+
+                
             </div>
     </main>
 

@@ -137,17 +137,15 @@ if (!isset($_SESSION['id_recicladora'])) {
                 botao.addEventListener('click', function() {
                     const idSolicitacao = this.getAttribute('data-id');
                     const acao = this.getAttribute('data-acao'); // 'Aceito' ou 'Recusado'
-                    const linhaTabela = this.closest('tr'); // Assumindo que o botão está em uma <tr>
+                    const linhaTabela = this.closest('tr'); 
 
                     // 1. Prepara a visualização imediata
                     if (linhaTabela) {
-                        // Opcional: Desabilita temporariamente os botões e indica que está processando
                         this.disabled = true;
                         linhaTabela.style.opacity = '0.6';
                         linhaTabela.title = 'Processando...';
                     }
                     
-                    // Não há confirm() aqui, a ação é imediata
 
                     const dados = new FormData();
                     dados.append('id_solicitacao_descarte', idSolicitacao);
