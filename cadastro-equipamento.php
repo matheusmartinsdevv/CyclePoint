@@ -169,18 +169,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
 
             <div class="form-content wide-form">
 
-                <!-- <div class="form-grid grid-2-columns exibir-categoria" style="justify-content: space-around;">
 
-                    <div class="input-group categoria-text">
-                        <h4>Nome do Equipamento:</h4>
-                    </div>
-
-
-                </div>
-
-                <hr class="normal-margin"> -->
-
-                <!-- CÓDIGO QUE CONECTA COM exibirEquipamento.php -->
                 <div>
 
                     <?php include 'app/php/exibirEquipamento.php'; ?>

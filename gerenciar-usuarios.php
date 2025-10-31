@@ -90,9 +90,10 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
             <h1 class="page-title">Gerenciamento de Usuários</h1>
             <p class="form-description">Adicione, edite ou remova usuários com acesso ao sistema CyclePoint da sua empresa.</p>
 
+            <h3 class="second-title">Novo Cadastro</h3>
+
 
             <div class="auth-container large-container" style="margin: auto;">
-            <h2 class="title-primary">Novo Cadastro</h2> 
 
             <!-- CADASTRO DE USUÁRIO -->
             <form id="form-usuario" action="./app/php/cadastroUsuario2.php" method="POST" class="registration-form active">

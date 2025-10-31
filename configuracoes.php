@@ -127,7 +127,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
 
             <div class="form-content wide-form">
 
-                <div class="form-grid grid-2-columns exibir-categoria" style="justify-content: space-around;">
+                <!-- <div class="form-grid grid-2-columns exibir-categoria" style="justify-content: space-around;">
 
                     <div class="input-group categoria-text">
                         <h4>Nome da Categoria:</h4>
@@ -139,7 +139,7 @@ if (!isset($_SESSION['id_empresa']) && !isset($_SESSION['id_usuario'])) {
 
                 </div>
 
-                <hr class="normal-margin">
+                <hr class="normal-margin"> -->
 
                 <!-- CÓDIGO QUE CONECTA COM exibirCategorias.php -->
 
