@@ -61,8 +61,8 @@ if ($result->num_rows > 0) {
             echo '<h3 class="solicitacao-descarte equipamento">Equipamento:'. $nome_equipamento  .'</h3>';
             echo '<span>Modelo: '.$modelo.'</span>';
             echo '<h4 class="solicitacao-descarte recicladora">Empresa solicitante: '. $nome_empresa  .'</h4>';
-            echo '<span>Data da solicitação: '.$data_solicitacao_display.'</span><br>';
-            echo '<span>Data da coleta: '.$data_coleta_display.'</span><br>';
+            echo '<span>Data da solicitação: '.$data_solicitacao_display.'</span>';
+            echo '<span style="float: right;">Data da coleta: '.$data_coleta_display.'</span><br>';
             echo '</div><hr>';
 
             $count += 1;

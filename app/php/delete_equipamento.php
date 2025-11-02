@@ -4,8 +4,7 @@ session_start();
 $conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
 if (!isset($_POST['id_equipamento'])) {
-    $_SESSION['feedback_message'] = "Erro: ID do equipamento não fornecido";
-    $_SESSION['feedback_type'] = "error";
+    $_SESSION['message'] = ['type' => 'error', 'text' => "Erro: ID do equipamento não fornecido"];
     header("Location: ../../dashboard.php");
     exit;
 }
@@ -15,8 +14,7 @@ $id_equipamento = (int)$_POST['id_equipamento'];
 if (isset($_SESSION['id_empresa'])) {
     $id_empresa = $_SESSION['id_empresa'];
 } else {
-    $_SESSION['feedback_message'] = "Erro: ID da empresa não encontrado na sessão";
-    $_SESSION['feedback_type'] = "error";
+    $_SESSION['message'] = ['type' => 'error', 'text' => "Erro: ID da empresa não encontrado na sessão"];
     header("Location: ../../dashboard.php");
     exit;
 }
@@ -28,8 +26,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    $_SESSION['feedback_message'] = "Erro: Equipamento não encontrado ou não pertence à sua empresa";
-    $_SESSION['feedback_type'] = "error";
+    $_SESSION['message'] = ['type' => 'error', 'text' => "Erro: Equipamento não encontrado ou não pertence à sua empresa"];
     header("Location: ../../dashboard.php");
     exit;
 }
@@ -39,11 +36,9 @@ $stmt = $conn->prepare("DELETE FROM equipamento WHERE id_equipamento = ? AND id_
 $stmt->bind_param("ii", $id_equipamento, $id_empresa);
 
 if ($stmt->execute()) {
-    $_SESSION['feedback_message'] = "Equipamento excluído com sucesso";
-    $_SESSION['feedback_type'] = "success";
+    $_SESSION['message'] = ['type' => 'success', 'text' => "Equipamento excluído com sucesso"];
 } else {
-    $_SESSION['feedback_message'] = "Erro ao excluir equipamento";
-    $_SESSION['feedback_type'] = "error";
+    $_SESSION['message'] = ['type' => 'error', 'text' => "Erro ao excluir equipamento"];
 }
 
 $stmt->close();

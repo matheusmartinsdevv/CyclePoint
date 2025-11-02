@@ -164,6 +164,15 @@ input[type="checkbox"] {
     font-weight: 500;
 }
 
+#id_solicitacao_descarte {
+    border: 1px #0000007d solid;
+    padding: 3px;
+    border-radius: 5px;
+    color: #0000009c;
+    font-size: x-small;
+    display: inline;
+}
+
 .separator {
     text-align: center;
     margin: 20px 0;

@@ -17,7 +17,7 @@ if (!isset($_SESSION['id_recicladora'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - CyclePoint</title>
+    <title>Itens que Coleto - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css"> 
     <link rel="stylesheet" href="css/notificacao.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -64,30 +64,82 @@ if (!isset($_SESSION['id_recicladora'])) {
 
     <main>
         <div class="container page-container">
-            <h1 class="page-title">Cadastro de itens que coleto</h1>
-            <form action="app/php/.php" method="POST" class="form-content wide-form">
+            <h1 class="page-title">Configuração dos itens coletados pela recicladora</h1>
+            <p class="form-description">Gerencie as categorias de itens coletados por sua recicladora.</p>
+
+            <hr>
+
+            <h3 class="second-title">Cadastro de Item que Coleto</h3>
+            
+            <form action="./app/php/cadastroItemQueColeto.php" method="POST" class="form-content wide-form">
                 <p class="form-description">Preencha todos os campos obrigatórios para registrar a nova categoria no sistema.</p>
                 
                 <div class="form-grid grid-2-columns">
- 
-                        </select>
-                                    </div>
 
-                                    <div class="input-group">
-                                        <label for="modelo">Nome do Equipamento*</label>
-                                        <input type="text" id="nome-equipamento" name="nome-equipamento" placeholder="Ex: Computador" required>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label for="modelo">Modelos aceitos*</label>
-                                        <input type="text" id="modelo" name="modelo" placeholder="Ex: OptiPlex 3080" required>
-                                    </div>
-
-                                <button type="submit" class="btn btn-primary btn-large">Registrar Equipamento</button>
-                            </form>
-
+                        <div class="input-group">
+                            <label for="nome_recicladora_categoria">Nome do Item*</label>
+                            <input type="text" id="nome_recicladora_categoria" name="nome_recicladora_categoria" placeholder="Ex: Notebook" required>
                         </div>
-                    </main>
+
+                    <div class="input-group">
+                        <label for="modelo">Descrição do Item*</label>
+                            <input type="text" id="descricao_recicladora" name="descricao_recicladora" required>
+                    </div>
+
+                    
+                <button type="submit" class="btn btn-primary btn-large">Registrar Categoria</button>
+            </form>
+
+            
+            
+            
+        </div>
+
+        <div class="container page-container">
+            <h3 class="second-title">Exibir Itens que Coleto</h3>
+
+
+            <div class="form-content wide-form">
+
+
+
+                <div class="exibir_categorias_recicladora" style="display: flex; justify-content: space-around; flex-direction: column">
+
+                    <?php include 'app/php/exibirItensQueColeto.php'; ?>
+
+
+                </div>
+
+                
+
+                
+            </div>
+        </div>
+
+        
+    </main>
+
+    <script>
+    $(document).ready(function() {
+        // Manipulador para o botão de editar
+        $('.editar-categoria').click(function() {
+            var id = $(this).data('id');
+            $.getJSON('app/php/get_categoria_recicladora.php?id=' + id, function(data) {
+                $('#editId').val(data.id_recicladora_categoria);
+                $('#editNome').val(data.nome_recicladora_categoria);
+                $('#editDescricao').val(data.descricao);
+                $('#editarModal').modal('show');
+            });
+        });
+
+        // Manipulador para o botão de excluir
+        $('.excluir-categoria').click(function() {
+            var id = $(this).data('id');
+            $('#deleteId').val(id);
+            $('#excluirModal').modal('show');
+        });
+    });
+    </script>
 
     <footer class="footer">
         <div class="container">

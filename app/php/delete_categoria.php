@@ -4,8 +4,7 @@ session_start();
 $conn = mysqli_connect("localhost:3306", "root", "", "banco_cyclepoint");
 
 if (!isset($_POST['id_categoria'])) {
-    $_SESSION['feedback_message'] = "Erro: ID da categoria não fornecido";
-    $_SESSION['feedback_type'] = "error";
+    $_SESSION['message'] = ['type' => 'error', 'text' => "Erro: ID da categoria não fornecido"];
     header("Location: ../../configuracoes.php");
     exit;
 }
@@ -13,8 +12,7 @@ if (!isset($_POST['id_categoria'])) {
 $id_categoria = (int)$_POST['id_categoria'];
 
 if (!isset($_SESSION['id_empresa'])) {
-    $_SESSION['feedback_message'] = "Erro: ID da empresa não encontrado na sessão";
-    $_SESSION['feedback_type'] = "error";
+    $_SESSION['message'] = ['type' => 'error', 'text' => "Erro: ID da empresa não encontrado na sessão"];
     header("Location: ../../configuracoes.php");
     exit;
 }
@@ -28,8 +26,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    $_SESSION['feedback_message'] = "Erro: Categoria não encontrada ou não pertence à sua empresa";
-    $_SESSION['feedback_type'] = "error";
+    $_SESSION['message'] = ['type' => 'error', 'text' => "Erro: Categoria não encontrada ou não pertence à sua empresa"];
     header("Location: ../../configuracoes.php");
     exit;
 }
@@ -39,11 +36,9 @@ $stmt = $conn->prepare("DELETE FROM categoria WHERE id_categoria = ? AND id_empr
 $stmt->bind_param("ii", $id_categoria, $id_empresa);
 
 if ($stmt->execute()) {
-    $_SESSION['feedback_message'] = "Categoria excluída com sucesso";
-    $_SESSION['feedback_type'] = "success";
+    $_SESSION['message'] = ['type' => 'success', 'text' => "Categoria excluída com sucesso"];
 } else {
-    $_SESSION['feedback_message'] = "Erro ao excluir categoria";
-    $_SESSION['feedback_type'] = "error";
+    $_SESSION['message'] = ['type' => 'error', 'text' => "Erro ao excluir categoria"];
 }
 
 $stmt->close();

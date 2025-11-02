@@ -47,21 +47,23 @@ if ($result->num_rows > 0) {
         $status_solicitacao = $dados_solicitacao['status_solicitacao'];
         $raw_data_coleta = $dados_solicitacao['data_coleta'];
 
-        if (empty($raw_data_coleta)) {
+        if (empty($raw_data_coleta) && $status_solicitacao !== 'Recusado' && $status_solicitacao !== 'Cancelado') {
             $data_coleta_display = 'Data da coleta ainda não definida';
-        } else {
+        } else if (!empty($raw_data_coleta)) {
             $data_coleta_display = 'Data da coleta: '.date('d/m/Y', strtotime($raw_data_coleta)).'';
+        } else {
+            $data_coleta_display = '';
         }
 
 
     echo '<div class="solicitacao-descarte">';
-        echo '<span>ID '.$id_solicitacao_descarte.'</span>';
+        echo '<span id="id_solicitacao_descarte">'.$id_solicitacao_descarte.'</span>';
         echo '<h3 class="solicitacao-descarte equipamento">Equipamento:'. $nome_equipamento  .'</h3>';
         echo '<span>Modelo: '.$modelo.'</span>';
         echo '<h4 class="solicitacao-descarte recicladora">Recicladora:'. $nome_recicladora  .'</h4>';
         echo '<span>Data da solicitação: '.$data_solicitacao.' |</span>';
-        echo '<span> Status: '.$status_solicitacao.'</span><br>';
-        echo '<span>'.$data_coleta_display.'</span>';
+        echo '<span> Status: '.$status_solicitacao.'</span>';
+        echo '<span style="float: right;">'.$data_coleta_display.'</span>';
 
         // Se a solicitação estiver pendente, permita que a empresa/usuário cancele
         if ($status_solicitacao === 'pendente') {

@@ -51,8 +51,9 @@ $stmt_check->close();
 // Atualiza campos permitidos
 $stmt_up = $conn->prepare("UPDATE equipamento SET nome_equipamento = ?, fabricante = ?, modelo = ?, vida_util_meses = ? WHERE id_equipamento = ?");
 $stmt_up->bind_param("sssii", $nome, $fabricante, $modelo, $vida, $id);
+
+
 if ($stmt_up->execute()) {
-    // Mensagem de sessão para feedback no frontend após recarregar a página
     $_SESSION['message'] = [
         'type' => 'success',
         'text' => '✅ Equipamento atualizado com sucesso.'
