@@ -41,7 +41,6 @@ if ($result->num_rows === 0) {
 
 // Atualiza
 $stmt = $conn->prepare("UPDATE endereco_empresa SET logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, pais = ? WHERE id_endereco_empresa = ? AND id_empresa = ?");
-// Tipagem: logradouro(s), numero(i), bairro(s), cidade(s), estado(s), pais(s), id_endereco(i), id_empresa(i)
 $stmt->bind_param("sissssii", $logradouro, $numero, $bairro, $cidade, $estado, $pais, $id_endereco, $id_empresa);
 
 if ($stmt->execute()) {

@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../../login.php");
 
             } else {
-                $stmt_data = $conn->prepare("SELECT id_recicladora,nome_fantasia FROM recicladora WHERE email = ? AND senha = ?;");
+                $stmt_data = $conn->prepare("SELECT id_recicladora, nome_fantasia FROM recicladora WHERE email = ? AND senha = ?;");
                 $stmt_data->bind_param("ss", $email, $senha_digitada);
                 $stmt_data->execute();
                 $resultado = $stmt_data->get_result();
@@ -67,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // INICIAR A SESSÃO DE LOGIN
                 $_SESSION['logado'] = true; 
-                // $_SESSION['recicladora'] = $recicladora['id_recicladora']; 
                 $_SESSION['id_recicladora'] = $recicladora['id_recicladora']; 
                 $_SESSION['nome_logado_display'] = $recicladora['nome_fantasia'];
                 $_SESSION['role'] = 'recicladora';

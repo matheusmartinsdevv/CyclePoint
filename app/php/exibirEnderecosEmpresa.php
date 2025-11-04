@@ -8,10 +8,19 @@ if (isset($_SESSION['id_empresa'])) {
         die("Erro: ID da empresa não encontrado na sessão."); 
     }
 
-$stmt = $conn->prepare("SELECT id_endereco_empresa, logradouro, numero, bairro, cidade, estado, pais FROM endereco_empresa WHERE id_empresa = ?");
+$stmt = $conn->prepare("SELECT id_endereco_empresa, logradouro, numero, bairro, cidade, estado, pais FROM endereco_empresa WHERE id_empresa = ? ORDER BY id_endereco_empresa ASC");
 $stmt->bind_param("i", $id_empresa);
 $stmt->execute();
 $result = $stmt->get_result();
+
+$total_enderecos = $result->num_rows;
+$primeiro_endereco = null;
+if ($total_enderecos > 0) {
+    $primeiro_registro = $result->fetch_assoc();
+    $primeiro_endereco = $primeiro_registro['id_endereco_empresa'];
+    // Volta o ponteiro para o início do resultado
+    $result->data_seek(0);
+}
 
 while ($dados_endereco_empresa = $result->fetch_assoc()) {
     $id_endereco = (int)$dados_endereco_empresa['id_endereco_empresa'];
@@ -23,10 +32,16 @@ while ($dados_endereco_empresa = $result->fetch_assoc()) {
     $pais = htmlspecialchars($dados_endereco_empresa['pais']);
 
     echo '<div class="endereco" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">';
-    echo '<span class="local">'. $logradouro .', '. $numero . ', '. $bairro . ' - ' . $cidade. ', '. $estado . ' - '. $pais . '</span>';
+    echo '<span class="local">'. $logradouro .', '. $numero . ', '. $bairro . ' - ' . $cidade. ', '. $estado . ' - '. $pais;
+    if ($id_endereco === $primeiro_endereco) {
+        echo ' <span style="color: #00A693; margin-left: 10px;">(Endereço Principal)</span>';
+    }
+    echo '</span>';
     echo '<div>';
     echo '<button data-id="'.$id_endereco.'" class="btn btn-secondary editar-endereco" style="margin-right:5px;">Editar</button>';
-    echo '<button data-id="'.$id_endereco.'" class="btn btn-secondary excluir-endereco">Excluir</button>';
+    if ($total_enderecos > 1 && $id_endereco !== $primeiro_endereco) {
+        echo '<button data-id="'.$id_endereco.'" class="btn btn-secondary excluir-endereco">Excluir</button>';
+    }
     echo '</div>';
     echo '</div>';
 };
