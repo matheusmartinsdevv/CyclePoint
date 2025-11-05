@@ -25,6 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssss", $razao_social, $nome_fantasia, $cnpj, $telefone, $email, $senha, $data_cadastro);
 
     if ($stmt->execute()) {
+
+
         $id_empresa_inserido = mysqli_insert_id($conn);
 
 

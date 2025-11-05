@@ -63,9 +63,9 @@
         <a href="cadastro.html" class="btn btn-secondary btn-full-width">
             <span class="icon"></span> Cadastre sua Empresa
         </a>
-        <a href="cadastro-usuario.html" class="btn btn-secondary btn-full-width">
+        <!-- <a href="cadastro-usuario.html" class="btn btn-secondary btn-full-width">
            <span class="icon"></span> Cadastre um Usuário
-        </a>
+        </a> -->
     </div>
 
     <a href="index.html" class="forgot-link back-to-home">

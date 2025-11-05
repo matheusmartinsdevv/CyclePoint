@@ -16,6 +16,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     while ($dados_equipamento = $result->fetch_assoc()) {
+        
         $id_equipamento = (int)$dados_equipamento['id_equipamento'];
         $nome_equipamento = htmlspecialchars($dados_equipamento['nome_equipamento']);
         $fabricante = htmlspecialchars($dados_equipamento['fabricante']);
