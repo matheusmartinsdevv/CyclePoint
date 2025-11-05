@@ -19,6 +19,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pais = $_POST['pais'];
 
 
+    // Verificação de CNPJ 
+    $stmt_cnpj = $conn->prepare("SELECT cnpj FROM recicladora");
+    $stmt_cnpj->execute();
+    $result = $stmt_cnpj->get_result();
+
+    if ($result->num_rows > 0) {
+        while ($dados = $result->fetch_assoc()) {
+            $cnpj_banco = $dados['cnpj'];
+
+            if ($cnpj_banco == $cnpj) {
+                $_SESSION['message'] = [
+                    'type' => 'error',
+                    'text' => '❌ Recicladora já cadastrada.'
+                ];
+
+                header("Location: ../../cadastro.php"); 
+            }
+        }
+        
+    } 
+
+
     $stmt = $conn->prepare("INSERT INTO recicladora (razao_social, nome_fantasia, cnpj, email, telefone, senha) values (?,?,?,?,?,?);");
 
     $stmt->bind_param("ssssss", $razao_social, $nome_fantasia, $cnpj, $email, $telefone, $senha);

@@ -42,9 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
 
 
-
-
-
     $stmt = $conn->prepare("INSERT INTO empresa (razao_social, nome_fantasia, cnpj, telefone, email, senha, data_cadastro) values (?,?,?,?,?,?,?);");
 
     $stmt->bind_param("sssssss", $razao_social, $nome_fantasia, $cnpj, $telefone, $email, $senha, $data_cadastro);
