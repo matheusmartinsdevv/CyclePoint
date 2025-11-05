@@ -60,7 +60,7 @@
     <p class="separator">Não tem conta?</p>
     
     <div class="registration-options">
-        <a href="cadastro.html" class="btn btn-secondary btn-full-width">
+        <a href="cadastro.php" class="btn btn-secondary btn-full-width">
             <span class="icon"></span> Cadastre sua Empresa
         </a>
         <!-- <a href="cadastro-usuario.html" class="btn btn-secondary btn-full-width">

@@ -6,10 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - CyclePoint</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="cadastro-body">
+
+    <?php
+        session_start();
+
+        // Verifica se há uma mensagem de feedback
+        if (isset($_SESSION['message'])) {
+            $message = $_SESSION['message'];
+            $class = ($message['type'] === 'success') ? 'success-message' : 'error-message-cadastro';
+            
+            echo '<div class="' . $class . '" style="background-color:#cdffed;">'; 
+            echo htmlspecialchars($message['text']);
+            echo '</div>';
+            
+            
+            unset($_SESSION['message']);
+        }
+    ?>
 
     <div class="auth-container large-container">
         <h2 class="title-primary">Novo Cadastro</h2>

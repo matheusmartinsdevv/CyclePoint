@@ -20,6 +20,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pais = $_POST['pais'];
 
 
+    // Verificação de CNPJ 
+    $stmt_cnpj = $conn->prepare("SELECT cnpj FROM empresa");
+    $stmt_cnpj->execute();
+    $result = $stmt_cnpj->get_result();
+
+    if ($result->num_rows > 0) {
+        while ($dados = $result->fetch_assoc()) {
+            $cnpj_banco = $dados['cnpj'];
+
+            if ($cnpj_banco == $cnpj) {
+                $_SESSION['message'] = [
+                    'type' => 'error',
+                    'text' => '❌ Empresa já cadastrada.'
+                ];
+
+                header("Location: ../../cadastro.php"); 
+            }
+        }
+        
+    } 
+
+
+
+
+
     $stmt = $conn->prepare("INSERT INTO empresa (razao_social, nome_fantasia, cnpj, telefone, email, senha, data_cadastro) values (?,?,?,?,?,?,?);");
 
     $stmt->bind_param("sssssss", $razao_social, $nome_fantasia, $cnpj, $telefone, $email, $senha, $data_cadastro);
